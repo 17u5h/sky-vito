@@ -9,7 +9,7 @@ const Main = () => {
 
 	return (
 		<div className={style.container}>
-			<Header isAuth={true}/>
+			<Header isAuth={false}/>
 			<Search/>
 			<Ads ads={ads}/>
 		</div>
