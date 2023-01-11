@@ -1,11 +1,17 @@
 import React from 'react'
-import Header from "../../components/Header/Header";
+import Header from "./Header/Header";
+import style from './style.module.css'
+import Search from "./Search/Search";
+import Ads from "../../components/Ads/Ads";
+import {ads} from "../../constants/ads-stub";
 
 const Main = () => {
 
 	return (
-		<div>
-			<Header isAuth={false}/>
+		<div className={style.container}>
+			<Header isAuth={true}/>
+			<Search/>
+			<Ads ads={ads}/>
 		</div>
 	)
 }

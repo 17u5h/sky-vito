@@ -1,0 +1,39 @@
+.adContainer{
+    width: 270px;
+    height: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.img{
+    width: 270px;
+    height: 270px;
+    margin-bottom: 10px;
+    background-size: contain;
+}
+.title{
+    height: 50px;
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 500;
+    color: #009ee4;
+}
+
+.price{
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 33px;
+    color: #000;
+}
+.description{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 126px;
+    height: 46px;
+}
+.city, .time{
+    font-size: 16px;
+    line-height: 20px;
+    color: #5F5F5F;
+}

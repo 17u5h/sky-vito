@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import UiButton from "../UI/UiButton/UiButton";
+import UiButton from "../../../components/UI/UiButton/UiButton";
 import style from './style.module.css'
-import UiModal from "../UI/UiModal/UiModal";
+import UiModal from "../../../components/UI/UiModal/UiModal";
 import {AnimatePresence, motion} from "framer-motion";
-import {backdrop} from "../../constants/animationModal";
-import {Login} from "../LoginRegistration/Login";
+import {backdrop} from "../../../constants/animationModal";
+import {Login} from "../../../components/LoginRegistration/Login";
 
 
 const Header = ({isAuth}) => {

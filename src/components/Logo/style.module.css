@@ -3,3 +3,10 @@
   height: 21px;
   background: url('../../../public/img/logo.svg') no-repeat center;
 }
+
+.logoPic{
+  width: 34px;
+  height: 38px;
+  background: url("../../../public/img/logoPicture.PNG") no-repeat center;
+  background-size: contain;
+}
