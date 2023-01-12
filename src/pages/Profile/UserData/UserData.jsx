@@ -1,36 +1,40 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './style.module.css';
 import UiButton from "../../../components/UI/UiButton/UiButton";
+import {user} from "../../../constants/userData-stub";
+import TitledInput from "./TitledInput/TitledInput";
 
 
 const UserData = () => {
+	const [firstName, setFirstName] = useState('')
+	const [lastName, setLastName] = useState('')
+	const [city, setCity] = useState('')
+	const [tel, setTel] = useState('')
+
+	const photo = {background: `#f0f0f0 url("${user.img}") no-repeat center)`}
+
+	useEffect(() => {
+		console.log(firstName, lastName, city, tel)
+	}, [firstName, lastName, city, tel])
+
+	const changePhoto = () => {}
+
 	return (
 		<div className={style.wrapper}>
 			<h2 className={style.title}>Настройки профиля</h2>
 			<div className={style.container}>
 				<div className={style.imageBlock}>
-					<div className={style.photo}/>
-					<div className={style.changeButton}/>
+					<div className={style.photo} style={photo}/>
+					<div className={style.changeButton} onClick={changePhoto}/>
 				</div>
 				<div className={style.inputsBlock}>
 					<div className={style.firstAndLastNameBlock}>
-						<div className={style.inputBlock}>
-							<div className={style.inputTitle}>Имя</div>
-							<input className={style.input}/>
-						</div>
-						<div className={style.inputBlock}>
-							<div className={style.inputTitle}>Фамилия</div>
-							<input className={style.input}/>
-						</div>
+						<TitledInput value={firstName} onChange={e => setFirstName(e.target.value)}>Имя</TitledInput>
+						<TitledInput value={lastName} onChange={e => setLastName(e.target.value)}>Фамилия</TitledInput>
 					</div>
-					<div className={style.inputBlock}>
-						<div className={style.inputTitle}>Город</div>
-						<input className={style.input}/>
-					</div>
-					<div className={style.inputBlock}>
-						<div className={style.inputTitle}>Телефон</div>
-						<input className={style.input}/>
-					</div>
+					<TitledInput value={city} onChange={e => setCity(e.target.value)}>Город</TitledInput>
+					<TitledInput value={tel} onChange={e => setTel(e.target.value)} width={'614px'} type={'tel'}>Телефон</TitledInput>
+
 					<UiButton>Сохранить</UiButton>
 				</div>
 			</div>

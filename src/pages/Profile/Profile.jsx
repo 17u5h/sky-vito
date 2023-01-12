@@ -9,6 +9,8 @@ import Ads from "../../components/Ads/Ads";
 import {ads} from "../../constants/ads-stub";
 
 const Profile = () => {
+	const name = user.firstName || 'Пользователь'
+
 	return (
 		<div className={style.container}>
 			<Header isAuth={true}/>
@@ -16,7 +18,7 @@ const Profile = () => {
 				<LogoPic/>
 				<UiButton>Вернуться на главную</UiButton>
 			</div>
-			<h1 className={style.greetings}>{`Здравствуйте, ${user.firstName}`}</h1>
+			<h1 className={style.greetings}>{`Здравствуйте, ${name}!`}</h1>
 			<UserData/>
 			<Ads ads={ads}/>
 		</div>

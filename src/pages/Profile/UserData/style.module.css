@@ -1,0 +1,55 @@
+.wrapper {
+    width: 1160px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    font-size: 32px;
+    line-height: 70px;
+}
+
+.container {
+    display: flex;
+    gap: 40px;
+}
+
+.imageBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+
+.photo {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+.changeButton {
+    cursor: pointer;
+    color: #009ee4;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.changeButton:hover {
+    text-decoration: underline;
+}
+
+.inputsBlock{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.firstAndLastNameBlock{
+    display: flex;
+    gap: 10px;
+}
+

@@ -2,4 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 40px;
+}
+.topBlock{
+    width: 1160px;
+    display: flex;
+    gap: 60px;
+}
+.greetings{
+    width: 1160px;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 88px;
 }
