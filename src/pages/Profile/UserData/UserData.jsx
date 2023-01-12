@@ -13,10 +13,6 @@ const UserData = () => {
 
 	const photo = {background: `#f0f0f0 url("${user.img}") no-repeat center)`}
 
-	useEffect(() => {
-		console.log(firstName, lastName, city, tel)
-	}, [firstName, lastName, city, tel])
-
 	const changePhoto = () => {}
 
 	return (
