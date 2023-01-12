@@ -10,8 +10,12 @@ const UserData = () => {
 	const [lastName, setLastName] = useState('')
 	const [city, setCity] = useState('')
 	const [tel, setTel] = useState('')
+	const [photo, setPhoto] = useState({})
 
-	const photo = {background: `#f0f0f0 url("${user.img}") no-repeat center)`}
+	useEffect(() => {
+		setPhoto({background: `#f0f0f0 url("${user.img}") no-repeat center`})
+	}, [])
+
 
 	const changePhoto = () => {}
 
@@ -21,7 +25,7 @@ const UserData = () => {
 			<div className={style.container}>
 				<div className={style.imageBlock}>
 					<div className={style.photo} style={photo}/>
-					<div className={style.changeButton} onClick={changePhoto}/>
+					<div className={style.changeButton} onClick={changePhoto}>Заменить</div>
 				</div>
 				<div className={style.inputsBlock}>
 					<div className={style.firstAndLastNameBlock}>

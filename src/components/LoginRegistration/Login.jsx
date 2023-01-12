@@ -4,6 +4,7 @@ import UiButton from '../UI/UiButton/UiButton'
 import Logo from '../Logo/Logo'
 import UiModal from '../UI/UiModal/UiModal'
 import { Registration } from './Registration'
+import {useNavigate} from "react-router-dom";
 
 export function Login({ closeModal }) {
 
@@ -17,6 +18,7 @@ export function Login({ closeModal }) {
   const [enterError, setEnterError] = useState('')
   const [loginLoading, setLoginLoading] = useState(false)
   const [showRegistrationForm, setShowRegistrationForm] = useState(false)
+  const navigate = useNavigate()
 
   const loginError = false
 
@@ -53,6 +55,7 @@ export function Login({ closeModal }) {
     try {
       // const response = await signInWithEmailAndPassword(email, password)
 
+      navigate('profile')
       closeModal()
 
       setPasswordError('')
