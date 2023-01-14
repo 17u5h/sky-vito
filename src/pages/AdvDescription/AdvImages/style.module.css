@@ -1,0 +1,22 @@
+.container {
+    width: 480px;
+    height: 598px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.bigImg{
+    width: 480px;
+    height: 480px;
+}
+
+.smallImagesContainer{
+    display: flex;
+    gap: 10px;
+}
+
+.smallImg{
+    width: 88px;
+    height: 88px;
+}

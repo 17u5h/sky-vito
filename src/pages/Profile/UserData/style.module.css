@@ -47,11 +47,15 @@
 .inputsBlock{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
 }
 
 .firstAndLastNameBlock{
     display: flex;
-    gap: 10px;
+    gap: 20px;
+}
+.emptySpace{
+    height: 30px;
+    color: transparent;
 }
 

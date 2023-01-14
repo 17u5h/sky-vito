@@ -1,9 +1,9 @@
 import React from 'react';
 import style from './style.module.css';
-import {user} from "../../constants/userData-stub";
+import {user} from "../../stubs/userData-stub";
 import UserData from "./UserData/UserData";
 import Ads from "../../components/Ads/Ads";
-import {ads} from "../../constants/ads-stub";
+import {ads} from "../../stubs/ads-stub";
 import HeaderWithLogo from "../../components/HeaderWithLogo/HeaderWithLogo";
 
 const Profile = () => {

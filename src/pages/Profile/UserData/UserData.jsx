@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import style from './style.module.css';
 import UiButton from "../../../components/UI/UiButton/UiButton";
-import {user} from "../../../constants/userData-stub";
+import {user} from "../../../stubs/userData-stub";
 import TitledInput from "./TitledInput/TitledInput";
 
 
@@ -15,7 +15,6 @@ const UserData = () => {
 	useEffect(() => {
 		setPhoto({background: `#f0f0f0 url("${user.img}") no-repeat center`})
 	}, [])
-
 
 	const changePhoto = () => {}
 
@@ -34,7 +33,7 @@ const UserData = () => {
 					</div>
 					<TitledInput value={city} onChange={e => setCity(e.target.value)}>Город</TitledInput>
 					<TitledInput value={tel} onChange={e => setTel(e.target.value)} width={'614px'} type={'tel'}>Телефон</TitledInput>
-
+					<div className={style.emptySpace}/>
 					<UiButton>Сохранить</UiButton>
 				</div>
 			</div>

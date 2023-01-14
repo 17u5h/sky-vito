@@ -1,10 +1,13 @@
 import React from 'react';
 import style from './style.module.css'
+import {useNavigate} from "react-router-dom";
 
 const Ad = ({ad}) => {
-	const backgroundImage = {background: `#F0F0F0 url("${ad.img}") no-repeat center`}
+	const navigate = useNavigate()
+	const backgroundImage = {background: `#F0F0F0 url("${ad.img[0]}") no-repeat center`}
+
 	return (
-		<div className={style.adContainer}>
+		<div className={style.adContainer} onClick={() => navigate(`adv:${ad.id}`)}>
 			<div className={style.img} style={backgroundImage}/>
 			<div className={style.title}>{ad.title}</div>
 			<div className={style.price}>{`${ad.price} ₽`}</div>

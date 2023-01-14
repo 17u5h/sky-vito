@@ -7,5 +7,6 @@
 .block{
     width: 1160px;
     display: flex;
+    align-items: center;
     gap: 60px;
 }

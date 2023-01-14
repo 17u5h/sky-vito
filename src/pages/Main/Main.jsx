@@ -3,7 +3,7 @@ import Header from "./Header/Header";
 import style from './style.module.css'
 import Search from "./Search/Search";
 import Ads from "../../components/Ads/Ads";
-import {ads} from "../../constants/ads-stub";
+import {ads} from "../../stubs/ads-stub";
 
 const Main = () => {
 
