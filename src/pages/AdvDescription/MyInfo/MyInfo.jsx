@@ -19,7 +19,7 @@ const MyInfo = ({user}) => {
 				<div className={style.myIcon} style={backgroundIcon}/>
 				<div className={style.about}>
 					<p className={style.name}>{firstName}</p>
-					<p className={style.date}>Продает товары с {date}</p>
+					<p className={style.since}>Продает товары с {date}</p>
 				</div>
 			</div>
 		</div>
