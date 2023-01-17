@@ -14,7 +14,8 @@ const AppRoutes = () => {
 
 	return (
 		<Routes>
-			<Route path="/" element={<Main/>}/>
+			<Route path="/" element={<SellerProfile/>}/>
+			{/*<Main isAuth={isAuth}/>*/}
 			<Route path="adv:id" element={<AdvDescription isSeller={true}/>}/>
 
 			<Route element={<ProtectedRoute isAuth={isAuth}/>}>

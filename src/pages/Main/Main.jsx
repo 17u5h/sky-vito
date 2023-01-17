@@ -5,11 +5,11 @@ import Search from "./Search/Search";
 import Ads from "../../components/Ads/Ads";
 import {ads} from "../../stubs/ads-stub";
 
-const Main = () => {
+const Main = ({isAuth}) => {
 
 	return (
 		<div className={style.container}>
-			<Header isAuth={false}/>
+			<Header isAuth={isAuth}/>
 			<Search/>
 			<Ads ads={ads}/>
 		</div>

@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 
 const Ad = ({ad}) => {
 	const navigate = useNavigate()
-	const backgroundImage = {background: `#F0F0F0 url("${ad.img[0]}") no-repeat center`}
+	const backgroundImage = {background: `#F0F0F0 url("${ad.images[0]}") no-repeat center`}
 
 	return (
 		<div className={style.adContainer} onClick={() => navigate(`adv:${ad.id}`)}>

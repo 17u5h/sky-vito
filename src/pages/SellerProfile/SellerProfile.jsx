@@ -17,7 +17,7 @@ const SellerProfile = () => {
 
 	return (
 		<div className={style.container}>
-			<HeaderWithLogo/>
+			<HeaderWithLogo isAuth={isAuth}/>
 			<p className={style.title}>Профиль продавца</p>
 			<div className={style.profileBlock}>
 				<div className={style.sellerPhoto} style={backgroundIcon}/>
@@ -29,6 +29,9 @@ const SellerProfile = () => {
 					</div>
 					<ButtonShowTel isAuth={isAuth} tel={tel}/>
 				</div>
+
+			</div>
+			<div className={style.productBlock}>
 				<p className={style.subtitle}>Товары продавца</p>
 				<Ads ads={ads}/>
 			</div>
