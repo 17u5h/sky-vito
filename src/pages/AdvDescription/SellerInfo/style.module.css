@@ -1,0 +1,37 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+}
+
+.sellerInfo{
+    width: 300px;
+    display: flex;
+    gap: 12px;
+}
+
+.sellerIcon{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.sellerAbout{
+    display: flex;
+    flex-direction: column;
+}
+
+.sellerName{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 26px;
+    color: #009ee4;
+    cursor: pointer;
+}
+.sellerName:hover{
+    text-decoration: underline;
+}
+
+.date{
+    line-height: 32px;
+}

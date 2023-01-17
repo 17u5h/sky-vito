@@ -3,5 +3,6 @@ export const user = {
 	firstName: 'Илья',
 	lastName: 'Ядренкин',
 	city: '',
-	img: ''
+	img: '',
+	date: 'Ноябрь 2020'
 }

@@ -4,6 +4,10 @@ import HeaderWithLogo from "../../components/HeaderWithLogo/HeaderWithLogo";
 import {ads} from "../../stubs/ads-stub";
 import {feedbacks} from "../../stubs/feedbacks-stub";
 import AdvImages from "./AdvImages/AdvImages";
+import SellerInfo from "./SellerInfo/SellerInfo";
+import MyInfo from "./MyInfo/MyInfo";
+import {seller} from "../../stubs/sellerInfo-stub";
+import {user} from "../../stubs/userData-stub";
 
 const AdvDescription = ({isSeller}) => {
 	// const { id } = useParams();
@@ -29,7 +33,7 @@ const AdvDescription = ({isSeller}) => {
 						<div className={style.feedbacks}>{`количество отзывов: ${countFeedbacks}`}</div>
 					</div>
 					<div className={style.price}>{`${ads[0].price} ₽`}</div>
-					{/*{isSeller ? <SellerInfo sellerId={sellerId}/> : <MyInfo/>}*/}
+					{isSeller ? <SellerInfo seller={seller}/> : <MyInfo user={user}/>}
 				</div>
 			</div>
 			<p className={style.subtitle}>Описание товара</p>

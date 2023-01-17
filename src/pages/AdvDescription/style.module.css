@@ -14,7 +14,6 @@
     width: 620px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 30px;
 }
 
@@ -27,7 +26,6 @@
 .infoBlock {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 4px;
     font-size: 16px;
     line-height: 20px;
@@ -39,6 +37,7 @@
 
 .feedbacks {
     color: #009ee4;
+    cursor: pointer;
 }
 
 .feedbacks:hover {
@@ -52,11 +51,12 @@
 }
 
 .subtitle{
+    width: 1160px;
     font-weight: 500;
     font-size: 32px;
     line-height: 70px;
 }
 
 .productDescription{
-    width: 800px;
+    width: 1160px;
 }
