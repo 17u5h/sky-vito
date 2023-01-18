@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.imageItem{
+    width: 90px;
+    height: 90px;
+    position: relative;
+}

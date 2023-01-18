@@ -1,0 +1,13 @@
+.closeButton {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    background: url('../../../../public/icons/close-modal-regular.svg') no-repeat center;
+}
+
+.closeButton:hover {
+    background: url('../../../../public/icons/close-modal-hover.svg') no-repeat center;
+}

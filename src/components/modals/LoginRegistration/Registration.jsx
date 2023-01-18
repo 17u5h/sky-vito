@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import UiButton from '../UI/UiButton/UiButton'
-import Logo from '../Logo/Logo'
+import UiButton from '../../UI/UiButton/UiButton'
+import Logo from '../../Logo/Logo'
 import styles from './style.module.css'
 import {motion} from 'framer-motion'
 import style from "./style.module.css";
+import {useNavigate} from "react-router-dom";
+import UiCloseButton from "../../UI/UiCloseButton/UiCloseButton";
 
 export function Registration({closeModal}) {
 
@@ -19,6 +21,8 @@ export function Registration({closeModal}) {
 	const [passwordError, setError] = useState('Пароль не может быть пустым')
 	const [formValid, setFormValid] = useState(false)
 	const [loginLoading, setLoginLoading] = useState(false)
+
+	const navigate = useNavigate()
 
 	const passwordHandler = (event) => {
 		switch (event.target.name) {
@@ -100,7 +104,7 @@ export function Registration({closeModal}) {
 		}
 		try {
 			// const userDataResponse = await fetchCreateUser(userData)
-
+			navigate('profile')
 			closeModal()
 		} catch (error) {
 			setError('Не получилось, описание в консоли')
@@ -121,7 +125,7 @@ export function Registration({closeModal}) {
 			<div className={styles.loginModalBlock}>
 				<div className={styles.inputBlock}>
 					<Logo/>
-					<div className={style.closeButton} onClick={closeModal}/>
+					<UiCloseButton onClick={closeModal}/>
 
 					{emailVisited && emailError && <div className={styles.loginError}>{emailError}</div>}
 					<input

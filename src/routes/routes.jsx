@@ -14,7 +14,7 @@ const AppRoutes = () => {
 
 	return (
 		<Routes>
-			<Route path="/" element={<SellerProfile/>}/>
+			<Route path="/" element={<Main isAuth={isAuth}/>}/>
 			{/*<Main isAuth={isAuth}/>*/}
 			<Route path="adv:id" element={<AdvDescription isSeller={true}/>}/>
 
