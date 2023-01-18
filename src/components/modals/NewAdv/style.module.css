@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 .header {
@@ -33,6 +33,7 @@
     border: 1px solid #5F5F5F;
     border-radius: 6px;
     padding-left: 20px;
+    font-size: 20px;
 }
 
 .descriptionArea {
@@ -45,6 +46,7 @@
 
 .nameInput::placeholder, .descriptionInput::placeholder {
     color: #5F5F5F;
+    font-size: 16px;
 }
 .ImgBlock{
     display: flex;
@@ -79,6 +81,8 @@
     width: 170px;
     height: 40px;
     padding-left: 20px;
+    font-weight: 500;
+    font-size: 24px;
 }
 .buttonPosition{
     width: 500px;

@@ -8,4 +8,5 @@
     width: 90px;
     height: 90px;
     position: relative;
+    background: #f0f0f0 url('../../../../../public/icons/plus.svg') no-repeat center;
 }

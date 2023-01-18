@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'SansSerif', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 body {
