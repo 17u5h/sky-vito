@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MyAdv = () => {
+const EditAdv = ({closeModal}) => {
 	return (
 		<div>
 			
@@ -8,4 +8,4 @@ const MyAdv = () => {
 	);
 };
 
-export default MyAdv;
+export default EditAdv;

@@ -1,12 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './style.module.css'
 import ReactImageUploading from "react-images-uploading";
-import {BASE_URL} from "../../../../constants/BASE_URL";
-import UiCloseIcon from "../../../UI/UiCloseIcon/UiCloseIcon";
+import {BASE_URL} from "../../../constants/BASE_URL";
+import UiCloseIcon from "../../../components/UI/UiCloseIcon/UiCloseIcon";
 
-const AddImages = () => {
+const AddImages = ({pictures}) => {
+	while (pictures.length < 5) pictures.push('')
 
-	const [images, setImages] = useState(['','','','',''])
+	const [images, setImages] = useState([])
+	useEffect(() => {
+		setImages(pictures)
+	})
+
 	const maxNumber = 5
 
 	const onChange = (imageList) => {

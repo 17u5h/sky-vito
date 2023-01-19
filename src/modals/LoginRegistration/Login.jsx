@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import style from './style.module.css'
-import UiButton from '../../UI/UiButton/UiButton'
-import Logo from '../../Logo/Logo'
-import UiModal from '../../UI/UiModal/UiModal'
+import UiButton from '../../components/UI/UiButton/UiButton'
+import Logo from '../../components/Logo/Logo'
+import UiModal from '../../components/UI/UiModal/UiModal'
 import {Registration} from './Registration'
 import {useNavigate} from "react-router-dom";
-import UiCloseButton from "../../UI/UiCloseButton/UiCloseButton";
+import UiCloseButton from "../../components/UI/UiCloseButton/UiCloseButton";
 
 export function Login({closeModal}) {
 

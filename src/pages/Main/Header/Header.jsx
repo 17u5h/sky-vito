@@ -4,9 +4,9 @@ import style from './style.module.css'
 import UiModal from "../../../components/UI/UiModal/UiModal";
 import {AnimatePresence, motion} from "framer-motion";
 import {backdrop, backdropNewADV} from "../../../constants/animationModal";
-import {Login} from "../../../components/modals/LoginRegistration/Login";
+import {Login} from "../../../modals/LoginRegistration/Login";
 import {useNavigate} from "react-router-dom";
-import NewAdv from "../../../components/modals/NewAdv/NewAdv";
+import HandleAdv from "../../../modals/HandleAdv/HandleAdv";
 
 
 const Header = ({isAuth}) => {
@@ -46,7 +46,7 @@ const Header = ({isAuth}) => {
 				{showNewAdvForm && (
 					<UiModal>
 						<motion.div variants={backdropNewADV} initial="hidden" animate="visible" exit="exit">
-							<NewAdv closeModal={showNewAdvFormHandle}/>
+							<HandleAdv closeModal={showNewAdvFormHandle} title='Новое объявление' isNew={true} editData={false}/>
 						</motion.div>
 					</UiModal>
 				)}

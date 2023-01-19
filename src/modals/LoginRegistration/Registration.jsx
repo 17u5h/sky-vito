@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import UiButton from '../../UI/UiButton/UiButton'
-import Logo from '../../Logo/Logo'
+import UiButton from '../../components/UI/UiButton/UiButton'
+import Logo from '../../components/Logo/Logo'
 import styles from './style.module.css'
 import {motion} from 'framer-motion'
 import style from "./style.module.css";
 import {useNavigate} from "react-router-dom";
-import UiCloseButton from "../../UI/UiCloseButton/UiCloseButton";
+import UiCloseButton from "../../components/UI/UiCloseButton/UiCloseButton";
 
 export function Registration({closeModal}) {
 
