@@ -98,9 +98,9 @@ export function Registration({closeModal}) {
 		const userData = {
 			email,
 			password,
-			firstName,
-			lastName,
-			userCity
+			name: firstName,
+			surname: lastName,
+			city: userCity
 		}
 		try {
 			// const userDataResponse = await fetchCreateUser(userData)
