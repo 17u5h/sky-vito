@@ -8,6 +8,7 @@ const AddImages = ({pictures}) => {
 	while (pictures.length < 5) pictures.push('')
 
 	const [images, setImages] = useState([])
+
 	useEffect(() => {
 		setImages(pictures)
 	})

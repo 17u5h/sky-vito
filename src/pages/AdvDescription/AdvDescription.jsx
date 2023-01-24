@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import style from './style.module.css'
 import HeaderWithLogo from "../../components/HeaderWithLogo/HeaderWithLogo";
 import {ads} from "../../stubs/ads-stub";
@@ -8,15 +8,23 @@ import SellerInfo from "./SellerInfo/SellerInfo";
 import MyInfo from "./MyInfo/MyInfo";
 import {seller} from "../../stubs/sellerInfo-stub";
 import {user} from "../../stubs/userData-stub";
+import UiModal from "../../components/UI/UiModal/UiModal";
+import {AnimatePresence, motion} from "framer-motion";
+import {backdropReviews} from "../../constants/animationModal";
+import Reviews from "../../modals/Reviews/Reviews";
 
 const AdvDescription = ({isSeller}) => {
 	// const { id } = useParams();
 	//
 	// const { data, isSuccess, isLoading, isError } = useFetchCoursePageQuery(id);
 
+	const [showReviews, setShowReviews] = useState(false)
 	const isAuth = true
 	const sellerId = ads[0].id
 
+	const showReviewsHandle = () => {
+		setShowReviews((prevState) => !prevState)
+	}
 
 	const countFeedbacks = feedbacks.length
 
@@ -30,7 +38,7 @@ const AdvDescription = ({isSeller}) => {
 					<div className={style.infoBlock}>
 						<p className={style.time}>{ads[0].time}</p>
 						<p className={style.city}>{ads[0].city}</p>
-						<div className={style.feedbacks}>{`количество отзывов: ${countFeedbacks}`}</div>
+						<div className={style.feedbacks} onClick={showReviewsHandle}>{`количество отзывов: ${countFeedbacks}`}</div>
 					</div>
 					<div className={style.price}>{`${ads[0].price} ₽`}</div>
 					{isSeller ? <SellerInfo seller={seller}/> : <MyInfo user={user}/>}
@@ -38,6 +46,15 @@ const AdvDescription = ({isSeller}) => {
 			</div>
 			<p className={style.subtitle}>Описание товара</p>
 			<p className={style.productDescription}>{ads[0].description}</p>
+			<AnimatePresence>
+				{showReviews && (
+					<UiModal>
+						<motion.div variants={backdropReviews} initial="hidden" animate="visible" exit="exit">
+							<Reviews closeModal={showReviewsHandle} />
+						</motion.div>
+					</UiModal>
+				)}
+			</AnimatePresence>
 		</div>
 	);
 };
