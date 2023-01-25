@@ -5,9 +5,16 @@ import {AnimatePresence, motion} from "framer-motion";
 import {backdropNewADV} from "../../../constants/animationModal";
 import HandleAdv from "../../../modals/HandleAdv/HandleAdv";
 import UiModal from "../../../components/UI/UiModal/UiModal";
+import {useSelector} from "react-redux";
+import {userAvatarSelector, userNameSelector, userSinceSelector} from "../../../store/selectors/getUserSelector";
 
-const MyInfo = ({user}) => {
+const MyInfo = () => {
 	const [showEditAdv, setShowEditAdv] = useState(false)
+	const firstName = useSelector(userNameSelector)
+	const since = useSelector(userSinceSelector)
+	const avatar = useSelector(userAvatarSelector)
+
+	since.replace('_', ' ')
 
 	const editData = {
 		title: 'Название товара',
@@ -20,9 +27,7 @@ const MyInfo = ({user}) => {
 		setShowEditAdv((prevState) => !prevState)
 	}
 
-	const {firstName, date, img} = user
-
-	const backgroundIcon = {background: `#F0F0F0 url("${img}") no-repeat center`}
+	const backgroundIcon = {background: `#F0F0F0 url("${avatar}") no-repeat center`}
 
 	return (
 		<div className={style.container}>
@@ -34,7 +39,7 @@ const MyInfo = ({user}) => {
 				<div className={style.myIcon} style={backgroundIcon}/>
 				<div className={style.about}>
 					<p className={style.name}>{firstName}</p>
-					<p className={style.since}>Продает товары с {date}</p>
+					<p className={style.since}>Продает товары с {since}</p>
 				</div>
 			</div>
 			<AnimatePresence>

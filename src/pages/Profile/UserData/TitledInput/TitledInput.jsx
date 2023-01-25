@@ -14,8 +14,14 @@ const TitledInput = ({children, ...props}) => {
 	return (
 		<div className={style.inputBlock}>
 			<div className={style.inputTitle} style={titleColor}>{children}</div>
-			<input className={style.input} style={{width: props.width}} onFocus={focusedTitleColor}
-						 onBlur={unfocusedTitleColor} onChange={props.onChange} type={props.type}/>
+			<input className={style.input}
+						 style={{width: props.width}}
+						 onFocus={focusedTitleColor}
+						 onBlur={unfocusedTitleColor}
+						 onChange={props.onChange}
+						 type={props.type}
+						 name={props.name}
+						 value={props.value}/>
 		</div>
 	);
 };

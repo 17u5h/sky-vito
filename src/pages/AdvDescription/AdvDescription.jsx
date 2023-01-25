@@ -7,7 +7,6 @@ import AdvImages from "./AdvImages/AdvImages";
 import SellerInfo from "./SellerInfo/SellerInfo";
 import MyInfo from "./MyInfo/MyInfo";
 import {seller} from "../../stubs/sellerInfo-stub";
-import {user} from "../../stubs/userData-stub";
 import UiModal from "../../components/UI/UiModal/UiModal";
 import {AnimatePresence, motion} from "framer-motion";
 import {backdropReviews} from "../../constants/animationModal";
@@ -41,7 +40,7 @@ const AdvDescription = ({isSeller}) => {
 						<div className={style.feedbacks} onClick={showReviewsHandle}>{`количество отзывов: ${countFeedbacks}`}</div>
 					</div>
 					<div className={style.price}>{`${ads[0].price} ₽`}</div>
-					{isSeller ? <SellerInfo seller={seller}/> : <MyInfo user={user}/>}
+					{isSeller ? <SellerInfo seller={seller}/> : <MyInfo/>}
 				</div>
 			</div>
 			<p className={style.subtitle}>Описание товара</p>

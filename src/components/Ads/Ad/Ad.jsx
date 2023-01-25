@@ -7,7 +7,7 @@ const Ad = ({ad}) => {
 	const backgroundImage = {background: `#F0F0F0 url("${ad.images[0]}") no-repeat center`}
 
 	return (
-		<div className={style.adContainer} onClick={() => navigate(`adv:${ad.id}`)}>
+		<div className={style.adContainer} onClick={() => navigate(`/adv`)}>
 			<div className={style.img} style={backgroundImage}/>
 			<div className={style.title}>{ad.title}</div>
 			<div className={style.price}>{`${ad.price} ₽`}</div>
