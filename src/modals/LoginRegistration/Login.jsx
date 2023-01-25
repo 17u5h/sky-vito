@@ -6,9 +6,12 @@ import UiModal from '../../components/UI/UiModal/UiModal'
 import {Registration} from './Registration'
 import {useNavigate} from "react-router-dom";
 import UiCloseButton from "../../components/UI/UiCloseButton/UiCloseButton";
-import $api from "../../http";
+import $api from "../../http/interceptors";
+import {useDispatch} from "react-redux";
+import {login} from "../../store/actionCreators/auth";
 
 export function Login({closeModal}) {
+	const dispatch = useDispatch()
 
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
@@ -61,6 +64,7 @@ export function Login({closeModal}) {
 			const tokens = await $api.post('/auth/login', JSON.stringify(loginData))
 			localStorage.setItem('accessToken', tokens.data.access_token)
 			localStorage.setItem('refreshToken', tokens.data.refresh_token)
+			dispatch(login())
 			closeModal()
 			setPasswordError('')
 		} catch (error) {

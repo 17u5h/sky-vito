@@ -3,13 +3,13 @@ import UiButton from '../../components/UI/UiButton/UiButton'
 import Logo from '../../components/Logo/Logo'
 import styles from './style.module.css'
 import {motion} from 'framer-motion'
-import style from "./style.module.css";
-import {useNavigate} from "react-router-dom";
 import UiCloseButton from "../../components/UI/UiCloseButton/UiCloseButton";
-import axios from "axios";
-import $api, {API_URL} from "../../http";
+import $api from "../../http/interceptors";
+import {login} from "../../store/actionCreators/auth";
+import {useDispatch} from "react-redux";
 
 export function Registration({closeModal}) {
+	const dispatch = useDispatch()
 
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
@@ -112,6 +112,7 @@ export function Registration({closeModal}) {
 			const tokens = await $api.post('/auth/login', JSON.stringify(tokensData))
 			localStorage.setItem('accessToken', tokens.data.access_token)
 			localStorage.setItem('refreshToken', tokens.data.refresh_token)
+			dispatch(login())
 			closeModal()
 		} catch (error) {
 			setError('Не получилось, описание в консоли')

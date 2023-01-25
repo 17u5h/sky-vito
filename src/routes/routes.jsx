@@ -6,10 +6,13 @@ import Main from "../pages/Main/Main";
 import Profile from "../pages/Profile/Profile";
 import AdvDescription from "../pages/AdvDescription/AdvDescription";
 import SellerProfile from "../pages/SellerProfile/SellerProfile";
+import {useSelector} from "react-redux";
+import {authSelector} from "../store/selectors/authSelector";
 
 const AppRoutes = () => {
 
-	const isAuth = false
+	const isAuth = useSelector(authSelector)
+	console.log(isAuth)
 
 	return (
 		<Routes>
