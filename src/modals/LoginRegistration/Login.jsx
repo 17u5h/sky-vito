@@ -6,6 +6,7 @@ import UiModal from '../../components/UI/UiModal/UiModal'
 import {Registration} from './Registration'
 import {useNavigate} from "react-router-dom";
 import UiCloseButton from "../../components/UI/UiCloseButton/UiCloseButton";
+import $api from "../../http";
 
 export function Login({closeModal}) {
 
@@ -19,7 +20,6 @@ export function Login({closeModal}) {
 	const [enterError, setEnterError] = useState('')
 	const [loginLoading, setLoginLoading] = useState(false)
 	const [showRegistrationForm, setShowRegistrationForm] = useState(false)
-	const navigate = useNavigate()
 
 	const loginError = false
 
@@ -52,13 +52,16 @@ export function Login({closeModal}) {
 		event.preventDefault()
 
 		setLoginLoading(true)
+		const loginData = {
+			email,
+			password
+		}
 
 		try {
-			// const response = await signInWithEmailAndPassword(email, password)
-
-			navigate('profile')
+			const tokens = await $api.post('/auth/login', JSON.stringify(loginData))
+			localStorage.setItem('accessToken', tokens.data.access_token)
+			localStorage.setItem('refreshToken', tokens.data.refresh_token)
 			closeModal()
-
 			setPasswordError('')
 		} catch (error) {
 			setEnterError(error.message)

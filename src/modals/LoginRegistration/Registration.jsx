@@ -6,6 +6,8 @@ import {motion} from 'framer-motion'
 import style from "./style.module.css";
 import {useNavigate} from "react-router-dom";
 import UiCloseButton from "../../components/UI/UiCloseButton/UiCloseButton";
+import axios from "axios";
+import $api, {API_URL} from "../../http";
 
 export function Registration({closeModal}) {
 
@@ -22,7 +24,6 @@ export function Registration({closeModal}) {
 	const [formValid, setFormValid] = useState(false)
 	const [loginLoading, setLoginLoading] = useState(false)
 
-	const navigate = useNavigate()
 
 	const passwordHandler = (event) => {
 		switch (event.target.name) {
@@ -102,9 +103,15 @@ export function Registration({closeModal}) {
 			surname: lastName,
 			city: userCity
 		}
+		const tokensData = {
+			email,
+			password
+		}
 		try {
-			// const userDataResponse = await fetchCreateUser(userData)
-			navigate('profile')
+			const response = await $api.post('/auth/register', JSON.stringify(userData))
+			const tokens = await $api.post('/auth/login', JSON.stringify(tokensData))
+			localStorage.setItem('accessToken', tokens.data.access_token)
+			localStorage.setItem('refreshToken', tokens.data.refresh_token)
 			closeModal()
 		} catch (error) {
 			setError('Не получилось, описание в консоли')

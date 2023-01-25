@@ -9,16 +9,16 @@ import SellerProfile from "../pages/SellerProfile/SellerProfile";
 
 const AppRoutes = () => {
 
-	const isAuth = true
+	const isAuth = false
 
 	return (
 		<Routes>
 			<Route path="/" element={<Main isAuth={isAuth}/>}/>
-			<Route path="adv" element={<AdvDescription isSeller={true}/>}/>
+			<Route path="/adv" element={<AdvDescription isSeller={true}/>}/>
 
 			<Route element={<ProtectedRoute isAuth={isAuth}/>}>
-				<Route path="profile" element={<Profile/>}/>
-				<Route path="seller-profile:23" element={<SellerProfile/>}/>
+				<Route path="/profile" element={<Profile/>}/>
+				<Route path="/seller-profile:23" element={<SellerProfile/>}/>
 			</Route>
 
 			<Route path="*" element={<NotFound/>}/>
