@@ -9,6 +9,7 @@ import UiCloseButton from "../../components/UI/UiCloseButton/UiCloseButton";
 import $api from "../../http/interceptors";
 import {useDispatch} from "react-redux";
 import {login} from "../../store/actionCreators/auth";
+import {fetchGetUser} from "../../store/thunks/getUserThunk";
 
 export function Login({closeModal}) {
 	const dispatch = useDispatch()
@@ -65,6 +66,7 @@ export function Login({closeModal}) {
 			localStorage.setItem('accessToken', tokens.data.access_token)
 			localStorage.setItem('refreshToken', tokens.data.refresh_token)
 			dispatch(login())
+			dispatch(fetchGetUser())
 			closeModal()
 			setPasswordError('')
 		} catch (error) {

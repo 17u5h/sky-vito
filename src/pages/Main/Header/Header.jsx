@@ -7,6 +7,8 @@ import {backdrop, backdropNewADV} from "../../../constants/animationModal";
 import {Login} from "../../../modals/LoginRegistration/Login";
 import {useNavigate} from "react-router-dom";
 import HandleAdv from "../../../modals/HandleAdv/HandleAdv";
+import {useSelector} from "react-redux";
+import {getUserSelector, userNameSelector} from "../../../store/selectors/getUserSelector";
 
 
 const Header = ({isAuth}) => {

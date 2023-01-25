@@ -7,6 +7,7 @@ import UiCloseButton from "../../components/UI/UiCloseButton/UiCloseButton";
 import $api from "../../http/interceptors";
 import {login} from "../../store/actionCreators/auth";
 import {useDispatch} from "react-redux";
+import {fetchGetUser} from "../../store/thunks/getUserThunk";
 
 export function Registration({closeModal}) {
 	const dispatch = useDispatch()
@@ -113,6 +114,7 @@ export function Registration({closeModal}) {
 			localStorage.setItem('accessToken', tokens.data.access_token)
 			localStorage.setItem('refreshToken', tokens.data.refresh_token)
 			dispatch(login())
+			dispatch(fetchGetUser())
 			closeModal()
 		} catch (error) {
 			setError('Не получилось, описание в консоли')

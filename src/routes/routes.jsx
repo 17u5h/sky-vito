@@ -12,7 +12,6 @@ import {authSelector} from "../store/selectors/authSelector";
 const AppRoutes = () => {
 
 	const isAuth = useSelector(authSelector)
-	console.log(isAuth)
 
 	return (
 		<Routes>

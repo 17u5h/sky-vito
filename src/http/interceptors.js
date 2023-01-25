@@ -10,6 +10,7 @@ const $api = axios.create({
 $api.interceptors.request.use((config) => {
 	config.headers['Content-Type'] = 'application/json'
 	config.headers.Authorization = `Bearer ${localStorage.getItem('accessToken')}`
+	console.log(config)
 	return config
 })
 

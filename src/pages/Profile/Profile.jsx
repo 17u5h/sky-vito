@@ -5,9 +5,11 @@ import UserData from "./UserData/UserData";
 import Ads from "../../components/Ads/Ads";
 import {ads} from "../../stubs/ads-stub";
 import HeaderWithLogo from "../../components/HeaderWithLogo/HeaderWithLogo";
+import {useSelector} from "react-redux";
+import {userNameSelector} from "../../store/selectors/getUserSelector";
 
 const Profile = () => {
-	const name = user.firstName || 'Пользователь'
+	const name = useSelector(userNameSelector)
 
 	return (
 		<div className={style.container}>
