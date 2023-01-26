@@ -66,8 +66,8 @@
     position: absolute;
     left: calc(50% - 40px);
     top: calc(50% - 40px);
-    border: 8px solid #e0e0e0;
-    border-top: 8px solid #00486eff;
+    border: 8px solid #00486eff;
+    border-top: 8px solid #e0e0e0;
     border-radius: 50%;
     height: 80px;
     width: 80px;

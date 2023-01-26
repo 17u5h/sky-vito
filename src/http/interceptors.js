@@ -7,15 +7,23 @@ const $api = axios.create({
 	baseURL: API_URL
 })
 
+export const $fileUpload = axios.create({
+	baseURL: API_URL
+})
+
 $api.interceptors.request.use((config) => {
 	config.headers['Content-Type'] = 'application/json'
 	config.headers.Authorization = `Bearer ${localStorage.getItem('accessToken')}`
 	return config
 })
 
-$api.interceptors.response.use((config) => {
+$fileUpload.interceptors.request.use((config) => {
+	config.headers['Content-Type'] = 'multipart/form-data'
+	config.headers.Authorization = `Bearer ${localStorage.getItem('accessToken')}`
 	return config
-}, async error => {
+})
+
+const updateToken = async (error, axiosInstance) => {
 	const originalRequest = error.config
 	if (error.response.status === 401 && error.config && !error.config.isRetry) {
 		originalRequest.isRetry = true
@@ -26,12 +34,20 @@ $api.interceptors.response.use((config) => {
 			})
 			localStorage.setItem('accessToken', response.data.access_token)
 			localStorage.setItem('refreshToken', response.data.refresh_token)
-			return $api.request(originalRequest)
+			return axiosInstance.request(originalRequest)
 		} catch (e) {
 			console.log('Пользователь не авторизован')
 		}
 	}
 	throw error
-})
+}
+
+$api.interceptors.response.use((config) => {
+	return config
+},  error => updateToken(error, $api))
+
+$fileUpload.interceptors.response.use((config) => {
+	return config
+}, error => updateToken(error, $fileUpload))
 
 export default $api
