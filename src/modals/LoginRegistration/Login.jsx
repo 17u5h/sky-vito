@@ -10,6 +10,7 @@ import $api from "../../http/interceptors";
 import {useDispatch} from "react-redux";
 import {login} from "../../store/actionCreators/auth";
 import {fetchGetUser} from "../../store/thunks/getUserThunk";
+import LoadingSpinner from "../../components/UI/LoadingSpinner/LoadingSpinner";
 
 export function Login({closeModal}) {
 	const dispatch = useDispatch()
@@ -125,7 +126,7 @@ export function Login({closeModal}) {
 					</UiButton>
 					<UiButton onClick={registrationHandler}>Зарегистрироваться</UiButton>
 				</div>
-				{loginLoading && <div className={style.loadingSpinner}></div>}
+				{loginLoading && <LoadingSpinner/>}
 			</div>
 			{showRegistrationForm && (
 				<UiModal showRegistrationForm={showRegistrationForm}>
