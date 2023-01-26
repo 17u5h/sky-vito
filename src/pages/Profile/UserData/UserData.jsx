@@ -68,6 +68,7 @@ const UserData = () => {
 		try {
 			const {data} = await $api.patch('/user', JSON.stringify(fetchData))
 			dispatch(getUserSuccess(data))
+			setSomethingChanged(false)
 		} catch (e) {
 			console.log(e)
 		}
