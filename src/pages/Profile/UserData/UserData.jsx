@@ -52,6 +52,7 @@ const UserData = () => {
 		const response = await $fileUpload.post('/user/avatar', formData)
 		const photo = response.data.avatar
 		setAvatar({background: `#f0f0f0 url("${API_URL}/${photo}") no-repeat center`})
+		setSomethingChanged(true)
 	}
 
 	const fetchNewUserData = async (event) => {
