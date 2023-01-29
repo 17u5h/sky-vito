@@ -46,9 +46,9 @@ const UserData = () => {
 	}
 
 	const changePhoto = async (event) => {
-		const file = event.target.files
+		const files = event.target.files
 		const formData = new FormData()
-		formData.append('file', file[0])
+		formData.append('file', files[0])
 		const response = await $fileUpload.post('/user/avatar', formData)
 		const photo = response.data.avatar
 		setAvatar({background: `#f0f0f0 url("${API_URL}/${photo}") no-repeat center`})

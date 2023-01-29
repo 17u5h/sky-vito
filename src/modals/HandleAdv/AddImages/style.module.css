@@ -1,12 +1,28 @@
-.container{
+.images{
     display: flex;
     gap: 10px;
-    cursor: pointer;
 }
 
 .imageItem{
     width: 90px;
     height: 90px;
-    position: relative;
+}
+
+.imageNotUploaded{
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
     background: #f0f0f0 url('../../../../public/icons/plus.svg') no-repeat center;
+}
+.imageUploaded{
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background: #f0f0f0 url('../../../../public/img/uploaded.jpg') no-repeat center;
+}
+
+.input{
+    display: none;
 }

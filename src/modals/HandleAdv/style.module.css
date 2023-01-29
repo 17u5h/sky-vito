@@ -61,10 +61,7 @@
 .postSign{
     color: #5F5F5F;
 }
-.images{
-    display: flex;
-    gap: 10px;
-}
+
 .priceInputField{
     display: flex;
     align-items: center;
