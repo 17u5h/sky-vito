@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './style.module.css'
 import HeaderWithLogo from "../../components/HeaderWithLogo/HeaderWithLogo";
 import {ads} from "../../stubs/ads-stub";
@@ -11,14 +11,37 @@ import UiModal from "../../components/UI/UiModal/UiModal";
 import {AnimatePresence, motion} from "framer-motion";
 import {backdropReviews} from "../../constants/animationModal";
 import Reviews from "../../modals/Reviews/Reviews";
+import {useParams} from "react-router-dom";
+import $api from "../../http/interceptors";
+import {useSelector} from "react-redux";
+import {authSelector} from "../../store/selectors/authSelector";
 
 const AdvDescription = ({isSeller}) => {
-	// const { id } = useParams();
-	//
-	// const { data, isSuccess, isLoading, isError } = useFetchCoursePageQuery(id);
-
+	const { id } = useParams();
+	const [adData, setAdData] = useState({})
+	const [images, setImages] = useState([])
 	const [showReviews, setShowReviews] = useState(false)
-	const isAuth = true
+	const isAuth = useSelector(authSelector)
+
+	const createArrOfImagesUrls = (data) => {
+		const ImageUrls = []
+		data.images.map(el => {
+				ImageUrls.push(el.url)
+		})
+		return ImageUrls
+	}
+
+	const fetchAdData = async () => {
+		const {data} = await $api.get(`ads/${id}`)
+		setAdData(data)
+		setImages(createArrOfImagesUrls(data))
+	}
+
+	useEffect(() => {
+		fetchAdData()
+
+	},[])
+
 	const sellerId = ads[0].id
 
 	const showReviewsHandle = () => {
@@ -31,20 +54,20 @@ const AdvDescription = ({isSeller}) => {
 		<div className={style.container}>
 			<HeaderWithLogo isAuth={isAuth}/>
 			<div className={style.block}>
-				<AdvImages images={ads[0].images}/>
+				<AdvImages images={images}/>
 				<div className={style.description}>
-					<h2 className={style.title}>{ads[0].title}</h2>
+					<h2 className={style.title}>{adData.title}</h2>
 					<div className={style.infoBlock}>
-						<p className={style.time}>{ads[0].time}</p>
-						<p className={style.city}>{ads[0].city}</p>
+						<p className={style.time}>{adData.created_on}</p>
+						<p className={style.city}>{adData.city}</p>
 						<div className={style.feedbacks} onClick={showReviewsHandle}>{`количество отзывов: ${countFeedbacks}`}</div>
 					</div>
-					<div className={style.price}>{`${ads[0].price} ₽`}</div>
+					<div className={style.price}>{`${adData.price} ₽`}</div>
 					{isSeller ? <SellerInfo seller={seller}/> : <MyInfo/>}
 				</div>
 			</div>
 			<p className={style.subtitle}>Описание товара</p>
-			<p className={style.productDescription}>{ads[0].description}</p>
+			<p className={style.productDescription}>{adData.description}</p>
 			<AnimatePresence>
 				{showReviews && (
 					<UiModal>

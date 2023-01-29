@@ -12,7 +12,7 @@ import {getUserSuccess} from "../../../store/actionCreators/getUser";
 const UserData = () => {
 	const userData = useSelector(getUserSelector)
 	const userAvatar = useSelector(userAvatarSelector)
-	const initialAvatar = {background: `#f0f0f0 url("${API_URL}/${userAvatar}") no-repeat center`}
+	const initialAvatar = {background: `#f0f0f0 url("${API_URL}/${userAvatar}") no-repeat center`, backgroundSize: 'cover'}
 
 	const [firstName, setFirstName] = useState(userData.name || '')
 	const [lastName, setLastName] = useState(userData.surname || '')
@@ -51,7 +51,7 @@ const UserData = () => {
 		formData.append('file', files[0])
 		const response = await $fileUpload.post('/user/avatar', formData)
 		const photo = response.data.avatar
-		setAvatar({background: `#f0f0f0 url("${API_URL}/${photo}") no-repeat center`})
+		setAvatar({background: `#f0f0f0 url("${API_URL}/${photo}") no-repeat center`, backgroundSize: 'cover'})
 		setSomethingChanged(true)
 	}
 

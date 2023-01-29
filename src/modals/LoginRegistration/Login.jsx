@@ -103,6 +103,7 @@ export function Login({closeModal}) {
 						onBlur={blurHandler}
 						name="email"
 						placeholder="email"
+						autoFocus
 					/>
 					{passwordVisited && passwordError && (
 						<div className={style.passwordError}>{passwordError}</div>

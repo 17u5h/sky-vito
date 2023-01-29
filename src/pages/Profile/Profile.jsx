@@ -1,15 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './style.module.css';
-import {user} from "../../stubs/userData-stub";
 import UserData from "./UserData/UserData";
 import Ads from "../../components/Ads/Ads";
-import {ads} from "../../stubs/ads-stub";
 import HeaderWithLogo from "../../components/HeaderWithLogo/HeaderWithLogo";
 import {useSelector} from "react-redux";
 import {userNameSelector} from "../../store/selectors/getUserSelector";
+import $api from "../../http/interceptors";
 
 const Profile = () => {
 	const name = useSelector(userNameSelector)
+	const [ads, setAds] = useState([])
+
+	const getMyAds = async () => {
+		const {data} = await $api.get('/ads/me/?sorting=new')
+		setAds(data)
+	}
+
+	useEffect(() => {
+		getMyAds()
+	},[])
 
 	return (
 		<div className={style.container}>
