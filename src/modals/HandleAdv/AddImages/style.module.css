@@ -4,6 +4,7 @@
 }
 
 .imageItem{
+    position: relative;
     width: 90px;
     height: 90px;
 }

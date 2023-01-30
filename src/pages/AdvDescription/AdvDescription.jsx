@@ -13,20 +13,25 @@ import {backdropReviews} from "../../constants/animationModal";
 import Reviews from "../../modals/Reviews/Reviews";
 import {useParams} from "react-router-dom";
 import $api from "../../http/interceptors";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {authSelector} from "../../store/selectors/authSelector";
+import {rerender} from "../../store/actionCreators/rerender";
+import {rerenderSelector} from "../../store/selectors/rerenderSelector";
+import {setAdvImages} from "../../store/actionCreators/advImages";
 
 const AdvDescription = ({isSeller}) => {
-	const { id } = useParams();
+	const {id} = useParams();
+	const dispatch = useDispatch()
 	const [adData, setAdData] = useState({})
 	const [images, setImages] = useState([])
 	const [showReviews, setShowReviews] = useState(false)
 	const isAuth = useSelector(authSelector)
+	const rerender = useSelector(rerenderSelector)
 
 	const createArrOfImagesUrls = (data) => {
 		const ImageUrls = []
-		data.images.map(el => {
-				ImageUrls.push(el.url)
+		data.images?.map(el => {
+			ImageUrls.push(el.url)
 		})
 		return ImageUrls
 	}
@@ -35,12 +40,12 @@ const AdvDescription = ({isSeller}) => {
 		const {data} = await $api.get(`ads/${id}`)
 		setAdData(data)
 		setImages(createArrOfImagesUrls(data))
+		dispatch(setAdvImages(createArrOfImagesUrls(data)))
 	}
 
 	useEffect(() => {
 		fetchAdData()
-
-	},[])
+	}, [rerender])
 
 	const sellerId = ads[0].id
 
@@ -54,7 +59,7 @@ const AdvDescription = ({isSeller}) => {
 		<div className={style.container}>
 			<HeaderWithLogo isAuth={isAuth}/>
 			<div className={style.block}>
-				<AdvImages images={images}/>
+				<AdvImages images={images} adData={adData}/>
 				<div className={style.description}>
 					<h2 className={style.title}>{adData.title}</h2>
 					<div className={style.infoBlock}>
@@ -63,7 +68,7 @@ const AdvDescription = ({isSeller}) => {
 						<div className={style.feedbacks} onClick={showReviewsHandle}>{`количество отзывов: ${countFeedbacks}`}</div>
 					</div>
 					<div className={style.price}>{`${adData.price} ₽`}</div>
-					{isSeller ? <SellerInfo seller={seller}/> : <MyInfo/>}
+					{isSeller ? <SellerInfo seller={seller}/> : <MyInfo adData={adData} images={images}/>}
 				</div>
 			</div>
 			<p className={style.subtitle}>Описание товара</p>
@@ -72,7 +77,7 @@ const AdvDescription = ({isSeller}) => {
 				{showReviews && (
 					<UiModal>
 						<motion.div variants={backdropReviews} initial="hidden" animate="visible" exit="exit">
-							<Reviews closeModal={showReviewsHandle} />
+							<Reviews closeModal={showReviewsHandle}/>
 						</motion.div>
 					</UiModal>
 				)}

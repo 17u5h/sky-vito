@@ -1,18 +1,24 @@
-import React, {useState} from 'react';
+import React from 'react';
 import style from "./style.module.css";
-import {$fileUpload} from "../../../http/interceptors";
 import {useDispatch, useSelector} from "react-redux";
 import {imagesSelector} from "../../../store/selectors/imagesSelector";
 import {setAdvImages} from "../../../store/actionCreators/advImages";
+import {putImageToAdv} from "../../../lib/putImageToAdv";
+import {rerender} from "../../../store/actionCreators/rerender";
+import UiCloseIcon from "../../../components/UI/UiCloseIcon/UiCloseIcon";
 
-const AddOneImage = ({background, setRerender}) => {
+const AddOneImage = ({background, isNew, adData}) => {
 	const images = useSelector(imagesSelector)
 	const dispatch = useDispatch()
 
-
-
 	const handleImage = (event) => {
 		const file = event.target.files[0]
+
+		if (!isNew) {
+			putImageToAdv(adData.id, file, dispatch, setAdvImages)
+			dispatch(rerender())
+			return
+		}
 
 		for (let i = 0; i < images.length; i++) {
 			if (!images[i]) {
@@ -20,7 +26,7 @@ const AddOneImage = ({background, setRerender}) => {
 				break
 			}
 		}
-		setRerender(count => count + 1)
+		dispatch(rerender())
 		dispatch(setAdvImages(images))
 	}
 
@@ -32,6 +38,7 @@ const AddOneImage = ({background, setRerender}) => {
 				<label htmlFor='uploadInput' className={style.imageUploaded}/>
 			}
 			<input id='uploadInput' type='file' className={style.input} onChange={e => handleImage(e)}/>
+			<UiCloseIcon/>
 		</div>
 	);
 };

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './style.module.css'
 import UiButton from "../../../components/UI/UiButton/UiButton";
 import {AnimatePresence, motion} from "framer-motion";
@@ -7,21 +7,21 @@ import HandleAdv from "../../../modals/HandleAdv/HandleAdv";
 import UiModal from "../../../components/UI/UiModal/UiModal";
 import {useSelector} from "react-redux";
 import {userAvatarSelector, userNameSelector, userSinceSelector} from "../../../store/selectors/getUserSelector";
+import {monthConverter} from "../../../lib/monthConverter";
 
-const MyInfo = () => {
+const MyInfo = ({adData, images}) => {
 	const [showEditAdv, setShowEditAdv] = useState(false)
+	const [sinceDate, setSinceDate] = useState('')
 	const firstName = useSelector(userNameSelector)
 	const since = useSelector(userSinceSelector)
 	const avatar = useSelector(userAvatarSelector)
 
-	since.replace('_', ' ')
+	useEffect(() => {
+		const yyyymmdd = since.split('-')
+		yyyymmdd[1] = monthConverter(yyyymmdd[1])
+		setSinceDate(yyyymmdd.join(' '))
+	}, [])
 
-	const editData = {
-		title: 'Название товара',
-		description: 'трали вали, хер в сандали',
-		images: ['','','',''],
-		price: 2200
-	}
 
 	const showEditAdvHandle = () => {
 		setShowEditAdv((prevState) => !prevState)
@@ -39,14 +39,15 @@ const MyInfo = () => {
 				<div className={style.myIcon} style={backgroundIcon}/>
 				<div className={style.about}>
 					<p className={style.name}>{firstName}</p>
-					<p className={style.since}>Продает товары с {since}</p>
+					<p className={style.since}>Продает товары с {sinceDate}</p>
 				</div>
 			</div>
 			<AnimatePresence>
 				{showEditAdv && (
 					<UiModal>
 						<motion.div variants={backdropNewADV} initial="hidden" animate="visible" exit="exit">
-							<HandleAdv closeModal={showEditAdvHandle} title='Редактировать объявление' isNew={false} editData={editData}/>
+							<HandleAdv closeModal={showEditAdvHandle} title='Редактировать объявление' isNew={false}
+												 adData={adData} oldImages={images}/>
 						</motion.div>
 					</UiModal>
 

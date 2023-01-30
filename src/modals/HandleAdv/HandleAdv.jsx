@@ -3,27 +3,28 @@ import style from './style.module.css'
 import UiCloseButton from "../../components/UI/UiCloseButton/UiCloseButton";
 import AddImages from "./AddImages/AddImages";
 import UiButton from "../../components/UI/UiButton/UiButton";
-import {$fileUpload} from "../../http/interceptors";
+import $api, {$fileUpload} from "../../http/interceptors";
 import {createFormData} from "../../lib/createFormData";
 import {useDispatch, useSelector} from "react-redux";
 import {imagesSelector} from "../../store/selectors/imagesSelector";
 import {setAdvImages} from "../../store/actionCreators/advImages";
+import {rerender} from "../../store/actionCreators/rerender";
 
-const HandleAdv = ({closeModal, title, isNew, editData}) => {
+const HandleAdv = ({closeModal, title, isNew, adData, oldImages}) => {
 	const [formValid, setFormValid] = useState(false)
-	const [newTitle, setNewTitle] = useState(editData.title || '')
-	const [description, setDescription] = useState(editData.description || '')
-	const [price, setPrice] = useState(editData.price || '')
+	const [newTitle, setNewTitle] = useState(adData.title || '')
+	const [description, setDescription] = useState(adData.description || '')
+	const [price, setPrice] = useState(adData.price || '')
 
 	const dispatch = useDispatch()
 	const images = useSelector(imagesSelector)
 
 	useEffect(() => {
 		const maxNumberOfPhoto = 5
-		const prettyArr = editData.images || []
-		while (prettyArr.length < maxNumberOfPhoto) prettyArr.push(null)
+		const prettyArr = oldImages || []
+		prettyArr.length = maxNumberOfPhoto
 		dispatch(setAdvImages(prettyArr))
-	},[editData.images])
+	},[])
 
 	const handleChanges = (event) => {
 		const value = event.target.value
@@ -51,17 +52,19 @@ const HandleAdv = ({closeModal, title, isNew, editData}) => {
 		const queryPrice = new URLSearchParams()
 		queryPrice.set('price', `${price}`)
 
-		const response = await $fileUpload.post(`ads/?${queryTitle}&${queryDescription}&${queryPrice}`, formData)
-		console.log(response.data)
+		await $fileUpload.post(`ads/?${queryTitle}&${queryDescription}&${queryPrice}`, formData)
 		closeModal()
 	}
 
-	const updateImage = async (event, file) => {
-
-		const formData = new FormData()
-		formData.append('file', file)
-
-
+	const changeDescription = async () => {
+		const data = {
+			title: newTitle,
+			description,
+			price
+		}
+		await $api.patch(`/ads/${adData.id}`, JSON.stringify(data))
+		closeModal()
+		dispatch(rerender())
 	}
 
 	return (
@@ -86,7 +89,7 @@ const HandleAdv = ({closeModal, title, isNew, editData}) => {
 					<p className={style.postSign}>не более 5 фотографий</p>
 				</div>
 
-				<AddImages name='images' isNew={isNew} />
+				<AddImages name='images' isNew={isNew} adData={adData}/>
 
 			</div>
 			<div className={style.priceBlock}>
@@ -101,7 +104,7 @@ const HandleAdv = ({closeModal, title, isNew, editData}) => {
 				{isNew ?
 					<UiButton disabled={!formValid} onClick={() => createImagesRequest(images)}>Опубликовать</UiButton>
 					:
-					<UiButton disabled={!formValid}>Сохранить</UiButton>
+					<UiButton disabled={!formValid} onClick={changeDescription}>Сохранить</UiButton>
 				}
 			</div>
 		</div>

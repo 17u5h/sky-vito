@@ -1,8 +1,10 @@
 import React from 'react';
 import style from './style.module.css'
 import {API_URL} from "../../../http/interceptors";
+import UiCloseIcon from "../../../components/UI/UiCloseIcon/UiCloseIcon";
+import AdvOneImage from "./AdvOneImage";
 
-const AdvImages = ({images}) => {
+const AdvImages = ({images, adData}) => {
 
 	while (images.length < 6) {
 		images.push('')
@@ -22,11 +24,9 @@ const AdvImages = ({images}) => {
 		<div className={style.container}>
 			<div className={style.bigImg} style={bigImgBackground}/>
 			<div className={style.smallImagesContainer}>
-				{smallImages.map(el => (<div key={Math.random() * 1000} className={style.smallImg}
-																		 style={{
-																			 background: `#F0F0F0 url("${API_URL}/${el}") no-repeat center`,
-																			 backgroundSize: 'cover'
-																		 }}/>))}
+				{smallImages.map(el => (
+					<AdvOneImage id={adData.id} url={el}/>
+					))}
 			</div>
 		</div>
 	);
