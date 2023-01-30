@@ -25,6 +25,7 @@ const AdvDescription = ({isSeller}) => {
 	const [adData, setAdData] = useState({})
 	const [images, setImages] = useState([])
 	const [showReviews, setShowReviews] = useState(false)
+	const [countFeedbacks, setCountFeedbacks] = useState(0)
 	const isAuth = useSelector(authSelector)
 	const rerender = useSelector(rerenderSelector)
 
@@ -41,19 +42,20 @@ const AdvDescription = ({isSeller}) => {
 		setAdData(data)
 		setImages(createArrOfImagesUrls(data))
 		dispatch(setAdvImages(createArrOfImagesUrls(data)))
+		const comments = await $api.get(`ads/${id}/comments`)
+		const countOfComments = comments.data.length
+		setCountFeedbacks(countOfComments)
 	}
+
+
 
 	useEffect(() => {
 		fetchAdData()
 	}, [rerender])
 
-	const sellerId = ads[0].id
-
 	const showReviewsHandle = () => {
 		setShowReviews((prevState) => !prevState)
 	}
-
-	const countFeedbacks = feedbacks.length
 
 	return (
 		<div className={style.container}>
@@ -77,7 +79,7 @@ const AdvDescription = ({isSeller}) => {
 				{showReviews && (
 					<UiModal>
 						<motion.div variants={backdropReviews} initial="hidden" animate="visible" exit="exit">
-							<Reviews closeModal={showReviewsHandle}/>
+							<Reviews closeModal={showReviewsHandle} adData={adData}/>
 						</motion.div>
 					</UiModal>
 				)}

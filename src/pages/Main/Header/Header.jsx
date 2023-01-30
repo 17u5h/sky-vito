@@ -7,8 +7,7 @@ import {backdrop, backdropNewADV} from "../../../constants/animationModal";
 import {Login} from "../../../modals/LoginRegistration/Login";
 import {useNavigate} from "react-router-dom";
 import HandleAdv from "../../../modals/HandleAdv/HandleAdv";
-import {useSelector} from "react-redux";
-import {getUserSelector, userNameSelector} from "../../../store/selectors/getUserSelector";
+
 
 
 const Header = ({isAuth}) => {
@@ -29,7 +28,7 @@ const Header = ({isAuth}) => {
 				<div>
 					{isAuth ?
 						<div className={style.buttonBlock}>
-							<UiButton topButton={true} onClick={showNewAdvFormHandle}>Разместить объявление</UiButton>
+							<UiButton topButton={true} onClick={showNewAdvFormHandle} isNew={true}>Разместить объявление</UiButton>
 							<UiButton topButton={true} onClick={() => navigate('/profile')}>Личный кабинет</UiButton>
 						</div>
 						:
