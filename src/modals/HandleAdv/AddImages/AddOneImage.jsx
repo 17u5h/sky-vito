@@ -22,11 +22,12 @@ const AddOneImage = ({background, isNew, adData}) => {
 
 		for (let i = 0; i < images.length; i++) {
 			if (!images[i]) {
+
 				images[i] = file
 				break
 			}
 		}
-		dispatch(rerender())
+		// dispatch(rerender())
 		dispatch(setAdvImages(images))
 	}
 

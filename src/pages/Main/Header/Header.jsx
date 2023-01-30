@@ -28,7 +28,7 @@ const Header = ({isAuth}) => {
 				<div>
 					{isAuth ?
 						<div className={style.buttonBlock}>
-							<UiButton topButton={true} onClick={showNewAdvFormHandle} isNew={true}>Разместить объявление</UiButton>
+							<UiButton topButton={true} onClick={showNewAdvFormHandle}>Разместить объявление</UiButton>
 							<UiButton topButton={true} onClick={() => navigate('/profile')}>Личный кабинет</UiButton>
 						</div>
 						:

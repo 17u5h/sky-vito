@@ -12,9 +12,9 @@ import {rerender} from "../../store/actionCreators/rerender";
 
 const HandleAdv = ({closeModal, title, isNew, adData, oldImages}) => {
 	const [formValid, setFormValid] = useState(false)
-	const [newTitle, setNewTitle] = useState(adData.title || '')
-	const [description, setDescription] = useState(adData.description || '')
-	const [price, setPrice] = useState(adData.price || '')
+	const [newTitle, setNewTitle] = useState(adData?.title || '')
+	const [description, setDescription] = useState(adData?.description || '')
+	const [price, setPrice] = useState(adData?.price || '')
 
 	const dispatch = useDispatch()
 	const images = useSelector(imagesSelector)
@@ -22,7 +22,8 @@ const HandleAdv = ({closeModal, title, isNew, adData, oldImages}) => {
 	useEffect(() => {
 		const maxNumberOfPhoto = 5
 		const prettyArr = oldImages || []
-		prettyArr.length = maxNumberOfPhoto
+		while (prettyArr.length < maxNumberOfPhoto) prettyArr.push('')
+		while (prettyArr.length > maxNumberOfPhoto) prettyArr.pop()
 		dispatch(setAdvImages(prettyArr))
 	},[])
 
@@ -39,14 +40,14 @@ const HandleAdv = ({closeModal, title, isNew, adData, oldImages}) => {
 				setPrice(value)
 				break
 		}
-		if (title) setFormValid(true)
+		if (newTitle) setFormValid(true)
 	}
 
 	const createImagesRequest = async (images) => {
 		const formData = createFormData(images)
 
 		const queryTitle = new URLSearchParams()
-		queryTitle.set('title', `${title}`)
+		queryTitle.set('title', `${newTitle}`)
 		const queryDescription = new URLSearchParams()
 		queryDescription.set('description', `${description}`)
 		const queryPrice = new URLSearchParams()

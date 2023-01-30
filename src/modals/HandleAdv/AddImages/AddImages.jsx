@@ -20,8 +20,6 @@ const AddImages = ({isNew, adData}) => {
 		}
 	}
 
-
-
 	return (
 		<div className={style.images}>
 			{rerender && images.map((el) => (

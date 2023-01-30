@@ -51,7 +51,7 @@ const Reviews = ({closeModal, adData}) => {
 										}}/>
 					<UiButton disabled={!formValid} onClick={addNewReview}>Опубликовать</UiButton>
 					<div className={style.reviewsSection}>
-						{reviews.map(el => (<Review reviewData={el}/>))}
+						{reviews.map(el => (<Review key={Math.random()*10000} reviewData={el}/>))}
 					</div>
 				</div>
 			</div>
