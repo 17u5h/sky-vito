@@ -8,6 +8,8 @@ import UiModal from "../../../components/UI/UiModal/UiModal";
 import {useSelector} from "react-redux";
 import {userAvatarSelector, userNameSelector, userSinceSelector} from "../../../store/selectors/getUserSelector";
 import {monthConverter} from "../../../lib/monthConverter";
+import $api from "../../../http/interceptors";
+import {useNavigate} from "react-router-dom";
 
 const MyInfo = ({adData, images}) => {
 	const [showEditAdv, setShowEditAdv] = useState(false)
@@ -15,6 +17,7 @@ const MyInfo = ({adData, images}) => {
 	const firstName = useSelector(userNameSelector)
 	const since = useSelector(userSinceSelector)
 	const avatar = useSelector(userAvatarSelector)
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		const yyyymmdd = since.split('-')
@@ -27,13 +30,18 @@ const MyInfo = ({adData, images}) => {
 		setShowEditAdv((prevState) => !prevState)
 	}
 
+	const deleteAdv = async () => {
+		await $api.delete(`/ads/${adData.id}`)
+		navigate('/profile')
+	}
+
 	const backgroundIcon = {background: `#F0F0F0 url("${avatar}") no-repeat center`}
 
 	return (
 		<div className={style.container}>
 			<div className={style.buttonBlock}>
 				<UiButton onClick={showEditAdvHandle}>Редактировать</UiButton>
-				<UiButton>Снять с публикации</UiButton>
+				<UiButton onClick={deleteAdv}>Снять с публикации</UiButton>
 			</div>
 			<div className={style.myInfo}>
 				<div className={style.myIcon} style={backgroundIcon}/>
