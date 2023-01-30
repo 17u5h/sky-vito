@@ -20,7 +20,7 @@ const AppRoutes = () => {
 
 			<Route element={<ProtectedRoute isAuth={isAuth}/>}>
 				<Route path="/profile" element={<Profile/>}/>
-				<Route path="/adv/:id" element={<AdvDescription isSeller={false}/>}/>
+				<Route path="/adv/:id" element={<AdvDescription />}/>
 				<Route path="/seller-profile:23" element={<SellerProfile/>}/>
 			</Route>
 

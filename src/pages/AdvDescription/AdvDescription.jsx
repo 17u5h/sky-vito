@@ -18,16 +18,19 @@ import {authSelector} from "../../store/selectors/authSelector";
 import {rerender} from "../../store/actionCreators/rerender";
 import {rerenderSelector} from "../../store/selectors/rerenderSelector";
 import {setAdvImages} from "../../store/actionCreators/advImages";
+import {getUserSelector} from "../../store/selectors/getUserSelector";
 
-const AdvDescription = ({isSeller}) => {
+const AdvDescription = () => {
 	const {id} = useParams();
 	const dispatch = useDispatch()
+	const [isSeller, setIsSeller] = useState(false)
 	const [adData, setAdData] = useState({})
 	const [images, setImages] = useState([])
 	const [showReviews, setShowReviews] = useState(false)
 	const [countFeedbacks, setCountFeedbacks] = useState(0)
 	const isAuth = useSelector(authSelector)
 	const rerender = useSelector(rerenderSelector)
+	const me = useSelector(getUserSelector)
 
 	const createArrOfImagesUrls = (data) => {
 		const ImageUrls = []
@@ -39,6 +42,7 @@ const AdvDescription = ({isSeller}) => {
 
 	const fetchAdData = async () => {
 		const {data} = await $api.get(`ads/${id}`)
+		data.user.id === me.id ? setIsSeller(false) : setIsSeller(true)
 		setAdData(data)
 		setImages(createArrOfImagesUrls(data))
 		dispatch(setAdvImages(createArrOfImagesUrls(data)))
@@ -46,8 +50,6 @@ const AdvDescription = ({isSeller}) => {
 		const countOfComments = comments.data.length
 		setCountFeedbacks(countOfComments)
 	}
-
-
 
 	useEffect(() => {
 		fetchAdData()
