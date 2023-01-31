@@ -1,16 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import style from './style.module.css'
-
 import AddOneImage from "./AddOneImage";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {imagesSelector} from "../../../store/selectors/imagesSelector";
 import {rerenderSelector} from "../../../store/selectors/rerenderSelector";
-import {setAdvImages} from "../../../store/actionCreators/advImages";
 
-const AddImages = ({isNew, adData}) => {
-	const dispatch = useDispatch()
+const AddImages = ({isNew, adData, setFormValid}) => {
 	const images = useSelector(imagesSelector)
 	const rerender = useSelector(rerenderSelector)
+
+	while (images.length > 5) images.pop()
 
 	const background = (el) => {
 		if (el) {
@@ -23,7 +22,7 @@ const AddImages = ({isNew, adData}) => {
 	return (
 		<div className={style.images}>
 			{rerender && images.map((el) => (
-				<AddOneImage key={Math.random() * 10000} background={background(el)} isNew={isNew} adData={adData}/>
+				<AddOneImage key={Math.random() * 10000} background={background(el)} isNew={isNew} adData={adData} setFormValid={setFormValid}/>
 			))}
 		</div>
 	);

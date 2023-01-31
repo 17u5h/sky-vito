@@ -15,6 +15,7 @@ import {authSelector} from "../../store/selectors/authSelector";
 import {rerenderSelector} from "../../store/selectors/rerenderSelector";
 import {setAdvImages} from "../../store/actionCreators/advImages";
 import {getUserSelector} from "../../store/selectors/getUserSelector";
+import {getPrettyDateAndTime} from "../../lib/getPrettyDateAndTime";
 
 const AdvDescription = () => {
 	const {id} = useParams();
@@ -24,6 +25,7 @@ const AdvDescription = () => {
 	const [images, setImages] = useState([])
 	const [showReviews, setShowReviews] = useState(false)
 	const [countFeedbacks, setCountFeedbacks] = useState(0)
+	const [timeOfPublished, setTimeOfPublished] = useState('')
 	const isAuth = useSelector(authSelector)
 	const rerender = useSelector(rerenderSelector)
 	const me = useSelector(getUserSelector)
@@ -40,11 +42,15 @@ const AdvDescription = () => {
 		const {data} = await $api.get(`ads/${id}`)
 		data.user.id === me.id ? setIsSeller(false) : setIsSeller(true)
 		setAdData(data)
+
 		setImages(createArrOfImagesUrls(data))
 		dispatch(setAdvImages(createArrOfImagesUrls(data)))
+
 		const comments = await $api.get(`ads/${id}/comments`)
 		const countOfComments = comments.data.length
 		setCountFeedbacks(countOfComments)
+
+		setTimeOfPublished(getPrettyDateAndTime(data.created_on))
 	}
 
 	useEffect(() => {
@@ -63,7 +69,7 @@ const AdvDescription = () => {
 				<div className={style.description}>
 					<h2 className={style.title}>{adData.title}</h2>
 					<div className={style.infoBlock}>
-						<p className={style.time}>{adData.created_on}</p>
+						<p className={style.time}>{'Опубликовано ' + timeOfPublished}</p>
 						<p className={style.city}>{adData.city}</p>
 						<div className={style.feedbacks} onClick={showReviewsHandle}>{`количество отзывов: ${countFeedbacks}`}</div>
 					</div>

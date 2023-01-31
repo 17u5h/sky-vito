@@ -8,7 +8,7 @@ import UiModal from "../../../components/UI/UiModal/UiModal";
 import {useSelector} from "react-redux";
 import {userAvatarSelector, userNameSelector, userSinceSelector} from "../../../store/selectors/getUserSelector";
 import {monthConverter} from "../../../lib/monthConverter";
-import $api from "../../../http/interceptors";
+import $api, {API_URL} from "../../../http/interceptors";
 import {useNavigate} from "react-router-dom";
 
 const MyInfo = ({adData, images}) => {
@@ -34,7 +34,13 @@ const MyInfo = ({adData, images}) => {
 		navigate('/profile')
 	}
 
-	const backgroundIcon = {background: `#F0F0F0 url("${avatar}") no-repeat center`}
+	const backgroundIcon = {
+		backgroundImage: `url("${API_URL}/${avatar}")`,
+		backgroundSize: 'cover',
+		backgroundColor: '#F0F0F0',
+		backgroundRepeat: 'no-repeat',
+		backgroundPosition: 'center'
+	}
 
 	return (
 		<div className={style.container}>
@@ -45,7 +51,7 @@ const MyInfo = ({adData, images}) => {
 			<div className={style.myInfo}>
 				<div className={style.myIcon} style={backgroundIcon}/>
 				<div className={style.about}>
-					<p className={style.name}>{firstName}</p>
+					<p className={style.name} onClick={() => navigate('/profile')}>{firstName}</p>
 					<p className={style.since}>Продает товары с {sinceDate}</p>
 				</div>
 			</div>

@@ -1,10 +1,18 @@
 import React from 'react';
 import style from './style.module.css'
+import {API_URL} from "../../../http/interceptors";
 
 const Review = ({reviewData}) => {
+	const background = {
+		backgroundImage: `url("${API_URL}/${reviewData.author?.avatar}")`,
+		backgroundSize: 'cover',
+		backgroundColor: '#F0F0F0',
+		backgroundRepeat: 'no-repeat',
+		backgroundPosition: 'center'
+	}
 	return (
 		<div className={style.wrapper}>
-			<div className={style.icon} style={{background: `#f0f0f0 url("${reviewData.author.avatar}") no-repeat center`}}/>
+			<div className={style.icon} style={background}/>
 			<div className={style.container}>
 				<div className={style.about}>
 					<p className={style.author}>{reviewData.author.name}</p>

@@ -4,7 +4,6 @@ import UiButton from '../../components/UI/UiButton/UiButton'
 import Logo from '../../components/Logo/Logo'
 import UiModal from '../../components/UI/UiModal/UiModal'
 import {Registration} from './Registration'
-import {useNavigate} from "react-router-dom";
 import UiCloseButton from "../../components/UI/UiCloseButton/UiCloseButton";
 import $api from "../../http/interceptors";
 import {useDispatch} from "react-redux";

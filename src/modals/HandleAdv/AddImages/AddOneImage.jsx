@@ -7,12 +7,13 @@ import {putImageToAdv} from "../../../lib/putImageToAdv";
 import {rerender} from "../../../store/actionCreators/rerender";
 import UiCloseIcon from "../../../components/UI/UiCloseIcon/UiCloseIcon";
 
-const AddOneImage = ({background, isNew, adData}) => {
+const AddOneImage = ({background, isNew, adData, setFormValid}) => {
 	const images = useSelector(imagesSelector)
 	const dispatch = useDispatch()
 
 	const handleImage = (event) => {
 		const file = event.target.files[0]
+		setFormValid(true)
 
 		if (!isNew) {
 			putImageToAdv(adData.id, file, dispatch, setAdvImages)
@@ -22,11 +23,12 @@ const AddOneImage = ({background, isNew, adData}) => {
 
 		for (let i = 0; i < images.length; i++) {
 			if (!images[i]) {
-
 				images[i] = file
 				break
 			}
 		}
+
+		dispatch(rerender())
 		dispatch(setAdvImages(images))
 	}
 

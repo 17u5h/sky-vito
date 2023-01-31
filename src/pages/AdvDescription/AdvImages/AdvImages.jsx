@@ -1,13 +1,19 @@
 import React from 'react';
 import style from './style.module.css'
-import {API_URL} from "../../../http/interceptors";
+import $api, {API_URL} from "../../../http/interceptors";
 import AdvOneImage from "./AdvOneImage";
+import UiCloseIcon from "../../../components/UI/UiCloseIcon/UiCloseIcon";
+import {setAdvImages} from "../../../store/actionCreators/advImages";
+import {rerender} from "../../../store/actionCreators/rerender";
+import {useSelector} from "react-redux";
+import {imagesSelector} from "../../../store/selectors/imagesSelector";
 
-const AdvImages = ({images, adData, isSeller}) => {
+const AdvImages = ({ adData, isSeller}) => {
 
-	while (images.length < 6) {
-		images.push('')
-	}
+	const images = useSelector(imagesSelector)
+
+	while (images.length < 6) images.push('')
+
 	const smallImages = images.slice(1, 6)
 
 	const bigImg = images[0]
@@ -19,13 +25,15 @@ const AdvImages = ({images, adData, isSeller}) => {
 		backgroundPosition: 'center'
 	}
 
+
 	return (
 		<div className={style.container}>
+
 			<div className={style.bigImg} style={bigImgBackground}/>
 			<div className={style.smallImagesContainer}>
 				{smallImages.map(el => (
-					<AdvOneImage key={Math.random()*10000} id={adData.id} url={el} isSeller={isSeller}/>
-					))}
+					<AdvOneImage key={Math.random() * 10000} id={adData.id} url={el} isSeller={isSeller}/>
+				))}
 			</div>
 		</div>
 	);

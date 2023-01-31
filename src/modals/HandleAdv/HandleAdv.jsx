@@ -25,7 +25,7 @@ const HandleAdv = ({closeModal, title, isNew, adData, oldImages}) => {
 		while (prettyArr.length < maxNumberOfPhoto) prettyArr.push('')
 		while (prettyArr.length > maxNumberOfPhoto) prettyArr.pop()
 		dispatch(setAdvImages(prettyArr))
-	},[])
+	}, [])
 
 	const handleChanges = (event) => {
 		const value = event.target.value
@@ -44,6 +44,7 @@ const HandleAdv = ({closeModal, title, isNew, adData, oldImages}) => {
 	}
 
 	const createImagesRequest = async (images) => {
+
 		const formData = createFormData(images)
 
 		const queryTitle = new URLSearchParams()
@@ -52,8 +53,11 @@ const HandleAdv = ({closeModal, title, isNew, adData, oldImages}) => {
 		queryDescription.set('description', `${description}`)
 		const queryPrice = new URLSearchParams()
 		queryPrice.set('price', `${price}`)
-
-		await $fileUpload.post(`ads/?${queryTitle}&${queryDescription}&${queryPrice}`, formData)
+		if (!images.find(el => el !== '')) {
+			await $api.post(`/adstext`, {title: newTitle, description, price})
+		} else{
+			await $fileUpload.post(`ads/?${queryTitle}&${queryDescription}&${queryPrice}`, formData)
+		}
 		closeModal()
 	}
 
@@ -90,7 +94,7 @@ const HandleAdv = ({closeModal, title, isNew, adData, oldImages}) => {
 					<p className={style.postSign}>не более 5 фотографий</p>
 				</div>
 
-				<AddImages name='images' isNew={isNew} adData={adData}/>
+				<AddImages name='images' isNew={isNew} adData={adData} setFormValid={setFormValid}/>
 
 			</div>
 			<div className={style.priceBlock}>
