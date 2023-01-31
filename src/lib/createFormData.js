@@ -1,4 +1,3 @@
-
 export const createFormData = (files) => {
 
 	const formData = new FormData()

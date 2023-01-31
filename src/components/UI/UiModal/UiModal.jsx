@@ -1,22 +1,22 @@
-import { createPortal } from 'react-dom'
-import { useEffect } from 'react'
+import {createPortal} from 'react-dom'
+import {useEffect} from 'react'
 import styles from './style.module.css'
 
-const UiModal = ({ children, showRegistrationForm }) => {
-  const mount = document.getElementById('modal')
-  mount.classList.add(styles.wrapper)
+const UiModal = ({children, showRegistrationForm}) => {
+	const mount = document.getElementById('modal')
+	mount.classList.add(styles.wrapper)
 
-  const element = document.createElement('div')
-  element.classList.add(showRegistrationForm === true ? styles.contentRegistration : styles.content)
+	const element = document.createElement('div')
+	element.classList.add(showRegistrationForm === true ? styles.contentRegistration : styles.content)
 
-  useEffect(() => {
-    mount.appendChild(element)
-    return () => {
-      mount.removeChild(element)
-    }
-  }, [mount, element])
+	useEffect(() => {
+		mount.appendChild(element)
+		return () => {
+			mount.removeChild(element)
+		}
+	}, [mount, element])
 
-  return createPortal(children, element)
+	return createPortal(children, element)
 }
 
 export default UiModal

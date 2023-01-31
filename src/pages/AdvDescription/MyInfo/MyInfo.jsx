@@ -24,7 +24,6 @@ const MyInfo = ({adData, images}) => {
 		setSinceDate(prettyDate)
 	}, [])
 
-
 	const showEditAdvHandle = () => {
 		setShowEditAdv((prevState) => !prevState)
 	}

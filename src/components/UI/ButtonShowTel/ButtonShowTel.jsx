@@ -5,7 +5,7 @@ const ButtonShowTel = ({tel, isAuth}) => {
 	const [visibleTel, setVisibleTel] = useState('8 XXX XXX XX XX')
 
 	const showTel = (rawTel) => {
-		if(!isAuth){
+		if (!isAuth) {
 			setVisibleTel('Необходимо войти')
 			return
 		}

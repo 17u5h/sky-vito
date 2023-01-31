@@ -44,19 +44,19 @@
     text-decoration: underline;
 }
 
-.price{
+.price {
     font-weight: 700;
     font-size: 28px;
     line-height: 40px;
 }
 
-.subtitle{
+.subtitle {
     width: 1160px;
     font-weight: 500;
     font-size: 32px;
     line-height: 70px;
 }
 
-.productDescription{
+.productDescription {
     width: 1160px;
 }

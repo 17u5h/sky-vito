@@ -18,11 +18,11 @@ const Profile = () => {
 
 	useEffect(() => {
 		getMyAds()
-	},[])
+	}, [])
 
 	return (
 		<div className={style.container}>
-			<HeaderWithLogo isAuth={true} />
+			<HeaderWithLogo isAuth={true}/>
 			<h1 className={style.greetings}>{`Здравствуйте, ${name}!`}</h1>
 			<UserData/>
 			<p className={style.subtitle}>Мои товары</p>

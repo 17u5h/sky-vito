@@ -1,42 +1,43 @@
-.container{
+.container {
     display: flex;
     flex-direction: column;
     gap: 34px;
 }
 
-.buttonBlock{
+.buttonBlock {
     display: flex;
     gap: 10px;
 }
 
-.myInfo{
+.myInfo {
     width: 400px;
     display: flex;
     gap: 12px;
 }
 
-.myIcon{
+.myIcon {
     width: 40px;
     height: 40px;
     border-radius: 50%;
 }
 
-.about{
+.about {
     display: flex;
     flex-direction: column;
 }
 
-.name{
+.name {
     font-weight: 700;
     font-size: 20px;
     line-height: 26px;
     color: #009ee4;
     cursor: pointer;
 }
-.name:hover{
+
+.name:hover {
     text-decoration: underline;
 }
 
-.since{
+.since {
     line-height: 32px;
 }

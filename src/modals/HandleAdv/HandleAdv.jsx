@@ -55,7 +55,7 @@ const HandleAdv = ({closeModal, title, isNew, adData, oldImages}) => {
 		queryPrice.set('price', `${price}`)
 		if (!images.find(el => el !== '')) {
 			await $api.post(`/adstext`, {title: newTitle, description, price})
-		} else{
+		} else {
 			await $fileUpload.post(`ads/?${queryTitle}&${queryDescription}&${queryPrice}`, formData)
 		}
 		closeModal()

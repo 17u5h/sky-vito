@@ -1,22 +1,23 @@
-.images{
+.images {
     display: flex;
     gap: 10px;
 }
 
-.imageItem{
+.imageItem {
     position: relative;
     width: 90px;
     height: 90px;
 }
 
-.imageNotUploaded{
+.imageNotUploaded {
     display: block;
     width: 100%;
     height: 100%;
     cursor: pointer;
     background: #f0f0f0 url('../../../../public/icons/plus.svg') no-repeat center;
 }
-.imageUploaded{
+
+.imageUploaded {
     display: block;
     width: 100%;
     height: 100%;
@@ -24,6 +25,6 @@
     background: #f0f0f0 url('../../../../public/img/uploaded.jpg') no-repeat center;
 }
 
-.input{
+.input {
     display: none;
 }

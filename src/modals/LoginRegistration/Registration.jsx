@@ -26,7 +26,6 @@ export function Registration({closeModal}) {
 	const [formValid, setFormValid] = useState(false)
 	const [loginLoading, setLoginLoading] = useState(false)
 
-
 	const passwordHandler = (event) => {
 		switch (event.target.name) {
 			case 'password':

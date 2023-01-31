@@ -4,7 +4,7 @@ import Ad from "./Ad/Ad";
 
 const Ads = ({ads}) => {
 
-		return (
+	return (
 		<div className={style.adsContainer}>
 			{ads.map(ad => (<Ad ad={ad} key={ad.id}/>))}
 		</div>

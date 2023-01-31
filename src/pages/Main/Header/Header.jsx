@@ -8,8 +8,6 @@ import {Login} from "../../../modals/LoginRegistration/Login";
 import {useNavigate} from "react-router-dom";
 import HandleAdv from "../../../modals/HandleAdv/HandleAdv";
 
-
-
 const Header = ({isAuth}) => {
 	const [showLoginForm, setShowLoginForm] = useState(false)
 	const [showNewAdvForm, setShowNewAdvForm] = useState(false)

@@ -6,22 +6,22 @@
     gap: 30px;
 }
 
-.bigImg{
+.bigImg {
     width: 480px;
     height: 480px;
-
 }
 
-.smallImagesContainer{
+.smallImagesContainer {
     display: flex;
     gap: 10px;
 }
 
-.smallImg{
+.smallImg {
     width: 88px;
     height: 88px;
 }
-.smlImg{
+
+.smlImg {
     position: relative;
 
 }

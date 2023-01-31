@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export const API_URL = 'http://localhost:8090'
 
 const $api = axios.create({
@@ -44,7 +43,7 @@ const updateToken = async (error, axiosInstance) => {
 
 $api.interceptors.response.use((config) => {
 	return config
-},  error => updateToken(error, $api))
+}, error => updateToken(error, $api))
 
 $fileUpload.interceptors.response.use((config) => {
 	return config

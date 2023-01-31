@@ -6,7 +6,6 @@ import {useDispatch} from "react-redux";
 import {rerender} from "../../../store/actionCreators/rerender";
 import {setAdvImages} from "../../../store/actionCreators/advImages";
 
-
 const AdvOneImage = ({id, url, isSeller}) => {
 	const dispatch = useDispatch()
 

@@ -48,21 +48,24 @@
     color: #5F5F5F;
     font-size: 16px;
 }
-.ImgBlock{
+
+.ImgBlock {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.signBlock{
+
+.signBlock {
     display: flex;
     gap: 10px;
     width: 500px;
 }
-.postSign{
+
+.postSign {
     color: #5F5F5F;
 }
 
-.priceInputField{
+.priceInputField {
     display: flex;
     align-items: center;
     width: 200px;
@@ -71,7 +74,8 @@
     border-radius: 6px;
     margin-right: 300px;
 }
-.priceInput{
+
+.priceInput {
     border: none;
     border-radius: 6px;
     outline: none;
@@ -81,6 +85,7 @@
     font-weight: 500;
     font-size: 24px;
 }
-.buttonPosition{
+
+.buttonPosition {
     width: 500px;
 }

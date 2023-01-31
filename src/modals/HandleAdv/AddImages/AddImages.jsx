@@ -22,7 +22,8 @@ const AddImages = ({isNew, adData, setFormValid}) => {
 	return (
 		<div className={style.images}>
 			{rerender && images.map((el) => (
-				<AddOneImage key={Math.random() * 10000} background={background(el)} isNew={isNew} adData={adData} setFormValid={setFormValid}/>
+				<AddOneImage key={Math.random() * 10000} background={background(el)} isNew={isNew} adData={adData}
+										 setFormValid={setFormValid}/>
 			))}
 		</div>
 	);

@@ -1,5 +1,5 @@
 
-.adContainer{
+.adContainer {
     width: 282px;
     height: 440px;
     display: flex;
@@ -9,17 +9,18 @@
     padding: 6px;
 }
 
-.adContainer:hover{
+.adContainer:hover {
     box-shadow: 0 0 11px 4px rgba(34, 60, 80, 0.2);
 }
 
-.img{
+.img {
     width: 270px;
     height: 270px;
     margin-bottom: 10px;
     background-size: contain;
 }
-.title{
+
+.title {
     height: 50px;
     font-size: 22px;
     line-height: 26px;
@@ -27,20 +28,22 @@
     color: #009ee4;
 }
 
-.price{
+.price {
     font-weight: 500;
     font-size: 22px;
     line-height: 33px;
     color: #000;
 }
-.description{
+
+.description {
     display: flex;
     flex-direction: column;
     gap: 4px;
     width: 270px;
     height: 46px;
 }
-.city, .time{
+
+.city, .time {
     font-size: 16px;
     line-height: 20px;
     color: #5F5F5F;

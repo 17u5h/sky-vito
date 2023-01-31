@@ -1,14 +1,11 @@
 import React from 'react';
 import style from './style.module.css'
-import $api, {API_URL} from "../../../http/interceptors";
+import {API_URL} from "../../../http/interceptors";
 import AdvOneImage from "./AdvOneImage";
-import UiCloseIcon from "../../../components/UI/UiCloseIcon/UiCloseIcon";
-import {setAdvImages} from "../../../store/actionCreators/advImages";
-import {rerender} from "../../../store/actionCreators/rerender";
 import {useSelector} from "react-redux";
 import {imagesSelector} from "../../../store/selectors/imagesSelector";
 
-const AdvImages = ({ adData, isSeller}) => {
+const AdvImages = ({adData, isSeller}) => {
 
 	const images = useSelector(imagesSelector)
 
@@ -24,7 +21,6 @@ const AdvImages = ({ adData, isSeller}) => {
 		backgroundRepeat: 'no-repeat',
 		backgroundPosition: 'center'
 	}
-
 
 	return (
 		<div className={style.container}>

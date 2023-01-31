@@ -6,10 +6,12 @@ import Ads from "../../components/Ads/Ads";
 import {useParams} from "react-router-dom";
 import $api, {API_URL} from "../../http/interceptors";
 import {monthConverter} from "../../lib/monthConverter";
+import {useSelector} from "react-redux";
+import {authSelector} from "../../store/selectors/authSelector";
 
 
 const SellerProfile = () => {
-	const { id } = useParams();
+	const {id} = useParams();
 	const initialProfileData = {
 		id: 0,
 		avatar: '',
@@ -30,9 +32,7 @@ const SellerProfile = () => {
 	const [avatar, setAvatar] = useState(initialBackground)
 	const [allAds, setAllAds] = useState([])
 	const [ads, setAds] = useState([])
-
-
-	const isAuth = true
+	const isAuth = useSelector(authSelector)
 
 	const fetchProfileData = async () => {
 		const {data} = await $api.get(`/ads/${id}`)
