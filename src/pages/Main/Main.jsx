@@ -9,6 +9,8 @@ import AdSkeletons from "../../components/UI/AdSkeletons/AdSkeletons";
 const Main = ({isAuth}) => {
 	const [ads, setAds] = useState([])
 	const [loading, setLoading] = useState(false)
+	const [searchQuery, setSearchQuery] = useState('')
+	const [sortedAds, setSortedAds] = useState([])
 
 	const fetchAllAds = async () => {
 		setLoading(true)
@@ -16,16 +18,27 @@ const Main = ({isAuth}) => {
 		setAds(data)
 		setLoading(false)
 	}
+	const getSortedAds = () => {
+		if (!searchQuery) {
+			setSortedAds(ads)
+		} else {
+			setSortedAds([...ads].filter(el => el.title.toLowerCase().includes(searchQuery.toLowerCase())))
+		}
+	}
 
 	useEffect(() => {
 		fetchAllAds()
 	}, [])
 
+	useEffect(() => {
+		getSortedAds()
+	}, [ads])
+
 	return (
 		<div className={style.container}>
 			<Header isAuth={isAuth}/>
-			<Search/>
-			{loading ? <AdSkeletons/> : <Ads ads={ads}/>}
+			<Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} onSubmit={getSortedAds}/>
+			{loading ? <AdSkeletons/> : <Ads ads={sortedAds}/>}
 		</div>
 	)
 }

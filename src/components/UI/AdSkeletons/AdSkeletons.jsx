@@ -6,7 +6,7 @@ const AdSkeletons = () => {
 	return (
 		<div className={style.adsContainer}>
 			{countOfSkeletons.map(el => (
-				<div className={style.adContainer}>
+				<div className={style.adContainer} key={Math.random()*10000}>
 					<div className={style.img}/>
 					<div className={style.title}/>
 					<div className={style.price}/>
