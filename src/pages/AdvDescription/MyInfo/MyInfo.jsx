@@ -20,9 +20,8 @@ const MyInfo = ({adData, images}) => {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		const yyyymmdd = since.split('-')
-		yyyymmdd[1] = monthConverter(yyyymmdd[1])
-		setSinceDate(yyyymmdd.join(' '))
+		const prettyDate = monthConverter(since)
+		setSinceDate(prettyDate)
 	}, [])
 
 

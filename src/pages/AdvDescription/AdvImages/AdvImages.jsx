@@ -3,7 +3,7 @@ import style from './style.module.css'
 import {API_URL} from "../../../http/interceptors";
 import AdvOneImage from "./AdvOneImage";
 
-const AdvImages = ({images, adData}) => {
+const AdvImages = ({images, adData, isSeller}) => {
 
 	while (images.length < 6) {
 		images.push('')
@@ -24,7 +24,7 @@ const AdvImages = ({images, adData}) => {
 			<div className={style.bigImg} style={bigImgBackground}/>
 			<div className={style.smallImagesContainer}>
 				{smallImages.map(el => (
-					<AdvOneImage key={Math.random()*10000} id={adData.id} url={el}/>
+					<AdvOneImage key={Math.random()*10000} id={adData.id} url={el} isSeller={isSeller}/>
 					))}
 			</div>
 		</div>

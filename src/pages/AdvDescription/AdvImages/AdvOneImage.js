@@ -7,7 +7,7 @@ import {rerender} from "../../../store/actionCreators/rerender";
 import {setAdvImages} from "../../../store/actionCreators/advImages";
 
 
-const AdvOneImage = ({id, url}) => {
+const AdvOneImage = ({id, url, isSeller}) => {
 	const dispatch = useDispatch()
 
 	const deleteImage = async () => {
@@ -26,7 +26,7 @@ const AdvOneImage = ({id, url}) => {
 						 background: `#F0F0F0 url("${API_URL}/${url}") no-repeat center`,
 						 backgroundSize: 'cover'
 					 }}/>
-			<UiCloseIcon onClick={deleteImage}/>
+			{!isSeller && <UiCloseIcon onClick={deleteImage}/>}
 		</div>
 	);
 };

@@ -23,7 +23,7 @@ import {getUserSelector} from "../../store/selectors/getUserSelector";
 const AdvDescription = () => {
 	const {id} = useParams();
 	const dispatch = useDispatch()
-	const [isSeller, setIsSeller] = useState(false)
+	const [isSeller, setIsSeller] = useState(true)
 	const [adData, setAdData] = useState({})
 	const [images, setImages] = useState([])
 	const [showReviews, setShowReviews] = useState(false)
@@ -63,7 +63,7 @@ const AdvDescription = () => {
 		<div className={style.container}>
 			<HeaderWithLogo isAuth={isAuth}/>
 			<div className={style.block}>
-				<AdvImages images={images} adData={adData}/>
+				<AdvImages images={images} adData={adData} isSeller={isSeller}/>
 				<div className={style.description}>
 					<h2 className={style.title}>{adData.title}</h2>
 					<div className={style.infoBlock}>
@@ -72,7 +72,7 @@ const AdvDescription = () => {
 						<div className={style.feedbacks} onClick={showReviewsHandle}>{`количество отзывов: ${countFeedbacks}`}</div>
 					</div>
 					<div className={style.price}>{`${adData.price} ₽`}</div>
-					{isSeller ? <SellerInfo seller={seller}/> : <MyInfo adData={adData} images={images}/>}
+					{isSeller ? <SellerInfo adData={adData}/> : <MyInfo adData={adData} images={images}/>}
 				</div>
 			</div>
 			<p className={style.subtitle}>Описание товара</p>

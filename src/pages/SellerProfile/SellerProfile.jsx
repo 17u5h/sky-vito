@@ -4,11 +4,12 @@ import HeaderWithLogo from "../../components/HeaderWithLogo/HeaderWithLogo";
 import ButtonShowTel from "../../components/UI/ButtonShowTel/ButtonShowTel";
 import {seller} from "../../stubs/sellerInfo-stub";
 import Ads from "../../components/Ads/Ads";
+import {useParams} from "react-router-dom";
 
 
 const SellerProfile = () => {
-	// const { id } = useParams();
-	//
+	const { id } = useParams();
+
 	// const { data, isSuccess, isLoading, isError } = useFetchCoursePageQuery(id);
 
 	const {photo, name, lastName, city, tel, since, ads} = seller

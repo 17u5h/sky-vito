@@ -21,7 +21,7 @@ const AppRoutes = () => {
 			<Route element={<ProtectedRoute isAuth={isAuth}/>}>
 				<Route path="/profile" element={<Profile/>}/>
 				<Route path="/adv/:id" element={<AdvDescription />}/>
-				<Route path="/seller-profile:23" element={<SellerProfile/>}/>
+				<Route path="/seller-profile/:id" element={<SellerProfile/>}/>
 			</Route>
 
 			<Route path="*" element={<NotFound/>}/>
