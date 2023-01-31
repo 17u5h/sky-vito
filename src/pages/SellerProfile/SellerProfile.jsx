@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import style from './style.module.css'
 import HeaderWithLogo from "../../components/HeaderWithLogo/HeaderWithLogo";
 import ButtonShowTel from "../../components/UI/ButtonShowTel/ButtonShowTel";
-import {seller} from "../../stubs/sellerInfo-stub";
 import Ads from "../../components/Ads/Ads";
 import {useParams} from "react-router-dom";
 import $api, {API_URL} from "../../http/interceptors";
