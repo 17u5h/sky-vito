@@ -10,7 +10,7 @@ import {useDispatch} from "react-redux";
 import {fetchGetUser} from "../../store/thunks/getUserThunk";
 import LoadingSpinner from "../../components/UI/LoadingSpinner/LoadingSpinner";
 
-export function Registration({closeModal}) {
+export function Registration({closeModal, closeLoginModal}) {
 	const dispatch = useDispatch()
 
 	const [email, setEmail] = useState('')
@@ -36,7 +36,7 @@ export function Registration({closeModal}) {
 				break
 		}
 		if (event.target.value.length < 8 || event.target.value.length > 16) {
-			setError('Пароль должен быть от 8 до 16 символов')
+			// setError('Пароль должен быть от 8 до 16 символов')
 			if (!event.target.value) {
 				setError('Пароль не может быть пустым')
 			}
@@ -116,6 +116,7 @@ export function Registration({closeModal}) {
 			dispatch(login())
 			dispatch(fetchGetUser())
 			closeModal()
+			closeLoginModal()
 		} catch (error) {
 			setError('Не получилось, описание в консоли')
 			console.log(error.message)

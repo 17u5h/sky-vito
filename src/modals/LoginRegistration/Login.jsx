@@ -130,7 +130,7 @@ export function Login({closeModal}) {
 			</div>
 			{showRegistrationForm && (
 				<UiModal showRegistrationForm={showRegistrationForm}>
-					<Registration closeModal={closeRegistrationForm}/>
+					<Registration closeModal={closeRegistrationForm} closeLoginModal={closeModal}/>
 				</UiModal>
 			)}
 		</div>

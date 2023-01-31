@@ -11,18 +11,10 @@ const AddImages = ({isNew, adData, setFormValid}) => {
 
 	while (images.length > 5) images.pop()
 
-	const background = (el) => {
-		if (el) {
-			return 'uploaded'
-		} else {
-			return 'not uploaded'
-		}
-	}
-
 	return (
 		<div className={style.images}>
 			{rerender && images.map((el) => (
-				<AddOneImage key={Math.random() * 10000} background={background(el)} isNew={isNew} adData={adData}
+				<AddOneImage key={Math.random() * 10000} image={el} isNew={isNew} adData={adData}
 										 setFormValid={setFormValid}/>
 			))}
 		</div>

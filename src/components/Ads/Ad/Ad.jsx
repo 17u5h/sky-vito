@@ -14,7 +14,6 @@ const Ad = ({ad}) => {
 
 	const cutTitle = ad.title.slice(0, 40)
 
-	console.log(ad)
 	return (
 		<div className={style.adContainer} onClick={() => navigate(`/adv/${ad.id}`)}>
 			<div className={style.img} style={backgroundImage}/>
