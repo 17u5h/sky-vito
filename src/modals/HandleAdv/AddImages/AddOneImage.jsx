@@ -27,7 +27,6 @@ const AddOneImage = ({background, isNew, adData}) => {
 				break
 			}
 		}
-		// dispatch(rerender())
 		dispatch(setAdvImages(images))
 	}
 

@@ -1,34 +1,84 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './style.module.css'
 import HeaderWithLogo from "../../components/HeaderWithLogo/HeaderWithLogo";
 import ButtonShowTel from "../../components/UI/ButtonShowTel/ButtonShowTel";
 import {seller} from "../../stubs/sellerInfo-stub";
 import Ads from "../../components/Ads/Ads";
 import {useParams} from "react-router-dom";
+import $api, {API_URL} from "../../http/interceptors";
+import {monthConverter} from "../../lib/monthConverter";
 
 
 const SellerProfile = () => {
 	const { id } = useParams();
+	const initialProfileData = {
+		id: 0,
+		avatar: '',
+		city: '',
+		name: '',
+		phone: '',
+		sells_from: '',
+	}
+	const initialBackground = {
+		backgroundImage: `url("")`,
+		backgroundSize: 'cover',
+		backgroundColor: '#F0F0F0',
+		backgroundRepeat: 'no-repeat',
+		backgroundPosition: 'center'
+	}
 
-	// const { data, isSuccess, isLoading, isError } = useFetchCoursePageQuery(id);
+	const [profileData, setProfileData] = useState(initialProfileData)
+	const [avatar, setAvatar] = useState(initialBackground)
+	const [allAds, setAllAds] = useState([])
+	const [ads, setAds] = useState([])
 
-	const {photo, name, lastName, city, tel, since, ads} = seller
+
 	const isAuth = true
-	const backgroundIcon = {background: `#F0F0F0 url("${photo}") no-repeat center`}
+
+	const fetchProfileData = async () => {
+		const {data} = await $api.get(`/ads/${id}`)
+		const {user} = await data
+		setProfileData(user)
+	}
+	const fetchAllAds = async () => {
+		const {data} = await $api.get(`/ads/?sorting=new`)
+		setAllAds(data)
+	}
+
+	useEffect(() => {
+		fetchProfileData()
+		fetchAllAds()
+	}, [])
+
+	useEffect(() => {
+		if (profileData.avatar !== null) setAvatar({
+			backgroundImage: `url("${API_URL}/${profileData.avatar}")`,
+			backgroundSize: 'cover',
+			backgroundColor: '#F0F0F0',
+			backgroundRepeat: 'no-repeat',
+			backgroundPosition: 'center'
+		})
+	}, [profileData])
+
+	useEffect(() => {
+		const ads = allAds.filter(el => el.user?.id === profileData?.id)
+		setAds(ads)
+	}, [profileData, allAds])
+
 
 	return (
 		<div className={style.container}>
 			<HeaderWithLogo isAuth={isAuth}/>
 			<p className={style.title}>Профиль продавца</p>
 			<div className={style.profileBlock}>
-				<div className={style.sellerPhoto} style={backgroundIcon}/>
+				<div className={style.sellerPhoto} style={avatar}/>
 				<div className={style.aboutBlock}>
 					<div className={style.infoBlock}>
-						<p className={style.name}>{name + ' ' + lastName}</p>
-						<p className={style.city}>{city}</p>
-						<p className={style.since}>Продает товары с {since}</p>
+						<p className={style.name}>{profileData.name}</p>
+						<p className={style.city}>{profileData.city}</p>
+						<p className={style.since}>Продает товары с {monthConverter(profileData.sells_from)}</p>
 					</div>
-					<ButtonShowTel isAuth={isAuth} tel={tel}/>
+					<ButtonShowTel isAuth={isAuth} tel={profileData.phone}/>
 				</div>
 
 			</div>

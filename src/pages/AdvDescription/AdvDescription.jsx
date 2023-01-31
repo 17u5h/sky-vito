@@ -1,12 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import style from './style.module.css'
 import HeaderWithLogo from "../../components/HeaderWithLogo/HeaderWithLogo";
-import {ads} from "../../stubs/ads-stub";
-import {feedbacks} from "../../stubs/feedbacks-stub";
 import AdvImages from "./AdvImages/AdvImages";
 import SellerInfo from "./SellerInfo/SellerInfo";
 import MyInfo from "./MyInfo/MyInfo";
-import {seller} from "../../stubs/sellerInfo-stub";
 import UiModal from "../../components/UI/UiModal/UiModal";
 import {AnimatePresence, motion} from "framer-motion";
 import {backdropReviews} from "../../constants/animationModal";
@@ -15,7 +12,6 @@ import {useParams} from "react-router-dom";
 import $api from "../../http/interceptors";
 import {useDispatch, useSelector} from "react-redux";
 import {authSelector} from "../../store/selectors/authSelector";
-import {rerender} from "../../store/actionCreators/rerender";
 import {rerenderSelector} from "../../store/selectors/rerenderSelector";
 import {setAdvImages} from "../../store/actionCreators/advImages";
 import {getUserSelector} from "../../store/selectors/getUserSelector";
