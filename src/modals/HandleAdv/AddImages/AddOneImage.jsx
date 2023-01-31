@@ -8,7 +8,7 @@ import {rerender} from "../../../store/actionCreators/rerender";
 import UiCloseIcon from "../../../components/UI/UiCloseIcon/UiCloseIcon";
 import $api, {API_URL} from "../../../http/interceptors";
 
-const AddOneImage = ({image, isNew, adData, setFormValid}) => {
+const AddOneImage = ({image, isNew, adData, setFormValid, files, setFiles}) => {
 	const images = useSelector(imagesSelector)
 	const dispatch = useDispatch()
 
@@ -34,17 +34,18 @@ const AddOneImage = ({image, isNew, adData, setFormValid}) => {
 	const handleImage = (event) => {
 		const file = event.target.files[0]
 		setFormValid(true)
+		const mountArrOfFiles = [...files]
 
 		if (!isNew) {
 			putImageToAdv(adData.id, file, dispatch, setAdvImages)
 			dispatch(rerender())
-
 			return
 		}
 
-		for (let i = 0; i < images.length; i++) {
-			if (!images[i]) {
-				images[i] = file
+		for (let i = 0; i < files.length; i++) {
+			if (!files[i]) {
+				mountArrOfFiles[i] = file
+				setFiles(mountArrOfFiles)
 				break
 			}
 		}

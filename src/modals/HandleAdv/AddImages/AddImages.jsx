@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import {imagesSelector} from "../../../store/selectors/imagesSelector";
 import {rerenderSelector} from "../../../store/selectors/rerenderSelector";
 
-const AddImages = ({isNew, adData, setFormValid}) => {
+const AddImages = ({isNew, adData, setFormValid, files, setFiles}) => {
 	const images = useSelector(imagesSelector)
 	const rerender = useSelector(rerenderSelector)
 
@@ -15,7 +15,7 @@ const AddImages = ({isNew, adData, setFormValid}) => {
 		<div className={style.images}>
 			{rerender && images.map((el) => (
 				<AddOneImage key={Math.random() * 10000} image={el} isNew={isNew} adData={adData}
-										 setFormValid={setFormValid}/>
+										 setFormValid={setFormValid} setFiles={setFiles} files={files}/>
 			))}
 		</div>
 	);

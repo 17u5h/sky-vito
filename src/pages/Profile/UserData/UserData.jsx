@@ -93,8 +93,8 @@ const UserData = () => {
 			<div className={style.container}>
 				<div className={style.imageBlock}>
 					<div className={style.photo} style={avatar}/>
-					<label htmlFor='uploadInput' className={style.uploadLabel}>Заменить</label>
-					<input type='file' id='uploadInput' className={style.changeButton} onChange={e => changePhoto(e)}/>
+					<label htmlFor='uploadAvatar' className={style.uploadLabel}>Заменить</label>
+					<input type='file' id='uploadAvatar' className={style.changeButton} onChange={e => changePhoto(e)}/>
 				</div>
 				<div className={style.inputsBlock}>
 					<div className={style.firstAndLastNameBlock}>

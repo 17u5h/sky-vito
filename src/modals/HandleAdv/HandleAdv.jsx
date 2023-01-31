@@ -15,16 +15,17 @@ const HandleAdv = ({closeModal, title, isNew, adData, oldImages}) => {
 	const [newTitle, setNewTitle] = useState(adData?.title || '')
 	const [description, setDescription] = useState(adData?.description || '')
 	const [price, setPrice] = useState(adData?.price || '')
+	const [files, setFiles] = useState(['','','','',''])
 
 	const dispatch = useDispatch()
 	const images = useSelector(imagesSelector)
 
 	useEffect(() => {
-		const maxNumberOfPhoto = 5
-		const prettyArr = oldImages || []
-		while (prettyArr.length < maxNumberOfPhoto) prettyArr.push('')
-		while (prettyArr.length > maxNumberOfPhoto) prettyArr.pop()
-		dispatch(setAdvImages(prettyArr))
+			const maxNumberOfPhoto = 5
+			const prettyArr = oldImages || []
+			while (prettyArr.length < maxNumberOfPhoto) prettyArr.push('')
+			while (prettyArr.length > maxNumberOfPhoto) prettyArr.pop()
+			dispatch(setAdvImages(prettyArr))
 	}, [])
 
 	const handleChanges = (event) => {
@@ -43,9 +44,8 @@ const HandleAdv = ({closeModal, title, isNew, adData, oldImages}) => {
 		if (newTitle) setFormValid(true)
 	}
 
-	const createImagesRequest = async (images) => {
-
-		const formData = createFormData(images)
+	const createImagesRequest = async (files) => {
+		const formData = createFormData(files)
 
 		const queryTitle = new URLSearchParams()
 		queryTitle.set('title', `${newTitle}`)
@@ -53,7 +53,8 @@ const HandleAdv = ({closeModal, title, isNew, adData, oldImages}) => {
 		queryDescription.set('description', `${description}`)
 		const queryPrice = new URLSearchParams()
 		queryPrice.set('price', `${price}`)
-		if (!images.find(el => el !== '')) {
+
+		if (!files.find(el => el !== '')) {
 			await $api.post(`/adstext`, {title: newTitle, description, price})
 		} else {
 			await $fileUpload.post(`ads/?${queryTitle}&${queryDescription}&${queryPrice}`, formData)
@@ -94,7 +95,7 @@ const HandleAdv = ({closeModal, title, isNew, adData, oldImages}) => {
 					<p className={style.postSign}>не более 5 фотографий</p>
 				</div>
 
-				<AddImages name='images' isNew={isNew} adData={adData} setFormValid={setFormValid}/>
+				<AddImages name='images' isNew={isNew} adData={adData} setFormValid={setFormValid} setFiles={setFiles} files={files}/>
 
 			</div>
 			<div className={style.priceBlock}>
@@ -107,7 +108,7 @@ const HandleAdv = ({closeModal, title, isNew, adData, oldImages}) => {
 			</div>
 			<div className={style.buttonPosition}>
 				{isNew ?
-					<UiButton disabled={!formValid} onClick={() => createImagesRequest(images)}>Опубликовать</UiButton>
+					<UiButton disabled={!formValid} onClick={() => createImagesRequest(files)}>Опубликовать</UiButton>
 					:
 					<UiButton disabled={!formValid} onClick={changeDescription}>Сохранить</UiButton>
 				}
