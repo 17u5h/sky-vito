@@ -21,3 +21,16 @@
 10.	При клике на свое имя мы возвращаемся в личный кабинет
 11.	При просмотре чужих объявлений доступны: просмотр комментариев, добавление комментария. 
 12.	Просмотр телефона продавца, а также посмотреть его профиль
+
+
+![image](https://user-images.githubusercontent.com/102058870/216819449-11fbd430-e4f4-4303-ad7f-4198540cd313.png)
+
+![image](https://user-images.githubusercontent.com/102058870/216819497-24724ee1-1a22-48dc-9d38-67c1c1b91f06.png)
+
+![image](https://user-images.githubusercontent.com/102058870/216819566-ed001720-2673-4042-9617-940d1abd2e93.png)
+
+![image](https://user-images.githubusercontent.com/102058870/216819603-e64ca73a-263d-4e5a-b643-d7638efdeae9.png)
+
+![image](https://user-images.githubusercontent.com/102058870/216819645-bd8908da-27ff-4d91-91a9-aceb049c8a5a.png)
+
+
