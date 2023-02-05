@@ -1,3 +1,5 @@
+Учебный пет проект
+
 Стек технологий: JavaScript, React, Redux, react-thunk, axios, react-router-dom, react-framer-motion, es-lint, prettier, CSS-modules
 
 Перед запуском проекта необходимо выполнить команды npm install, а затем npm run start
