@@ -1,6 +1,6 @@
 Учебный пет проект
 
-Стек технологий: JavaScript, React, Redux, react-thunk, axios, react-router-dom, react-framer-motion, es-lint, prettier, CSS-modules
+Стек технологий: JavaScript, React, Redux, redux-thunk, axios, react-router-dom, react-framer-motion, es-lint, prettier, CSS-modules
 
 Перед запуском проекта необходимо выполнить команды npm install, а затем npm run start
 1.	Техническим заданием мне поставлена задача создать сайт по размещению объявлений по продаже товаров на предоставленном бэкенде
