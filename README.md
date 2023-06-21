@@ -1,4 +1,4 @@
-Учебный пет проект
+Пет проект. Простенький аналог avito
 
 Стек технологий: JavaScript, React, Redux, redux-thunk, axios, react-router-dom, react-framer-motion, es-lint, prettier, CSS-modules
 
